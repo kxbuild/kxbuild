@@ -249,15 +249,15 @@ distribution.p12=123456
 kxbuild 会一并安装用于通过 USB 与 iPhone 通信的 `kxdevice`。
 
 ```shell
-kxdevice setup                    # 首次：安装设备驱动 / usbmuxd
+kxdevice doctor                   # 检查并修复设备支持（usbmuxd）
 kxdevice device list              # 第一列是 UDID
 kxbuild build .\MyApp.xcodeproj --install
 kxdevice install .\build\MyApp.ipa
 ```
 
-| 系统 | `kxdevice setup` 做什么 |
+| 系统 | `kxdevice doctor` 做什么 |
 |---|---|
-| Windows | 启动 Apple Mobile Device Service，未安装时先装 Apple Devices 或 iTunes（需一次管理员授权） |
+| Windows | 启动 Apple Mobile Device Service（需一次管理员授权）；未安装时请先从 Microsoft Store 安装并打开「Apple 设备」 |
 | WSL | 通过中继使用 Windows 侧的服务。iPhone 插在 Windows 上即可，不要用 usbipd 直通 |
 | Linux | 安装并启动 usbmuxd 及 udev 规则（需要 sudo） |
 | macOS | 无需安装 |

@@ -249,15 +249,15 @@ As in Xcode, the project's signing settings decide which certificate and profile
 kxbuild installs `kxdevice` alongside it for talking to iPhones over USB.
 
 ```shell
-kxdevice setup                    # one-time: device drivers / usbmuxd
+kxdevice doctor                   # check and repair device support (usbmuxd)
 kxdevice device list              # first column is the UDID
 kxbuild build .\MyApp.xcodeproj --install
 kxdevice install .\build\MyApp.ipa
 ```
 
-| OS | `kxdevice setup` |
+| OS | `kxdevice doctor` |
 |---|---|
-| Windows | Starts the Apple Mobile Device Service, installing Apple Devices or iTunes first if needed (one admin approval) |
+| Windows | Starts the Apple Mobile Device Service (one admin approval); if it is missing, install and open Apple Devices from the Microsoft Store first |
 | WSL | Uses the Windows-side service through a relay. Plug the iPhone into Windows; don't pass it through with usbipd |
 | Linux | Installs and starts usbmuxd and its udev rules (needs sudo) |
 | macOS | Nothing to install |
