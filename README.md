@@ -18,7 +18,7 @@ and produces signed .ipa files ready for the App Store. Runs on Windows, Linux a
 ![Linux](https://img.shields.io/badge/Linux_/_WSL-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
 
-[Install](#-install) · [Project types](#-supported-project-types) · [Issues](../../issues)
+[Install](#-install) · [Project types](#-supported-project-types) · [VS Code extension](#-vs-code-extension) · [Issues](../../issues)
 
 </div>
 
@@ -63,6 +63,14 @@ Each guide shows how to prepare and build that kind of project with the `kxbuild
 | <img src="https://cdn.simpleicons.org/apachecordova/35434F" width="18" /> **Cordova** | [doc/en/cordova.md](doc/en/cordova.md) |
 
 C and C++ sources inside any of these projects build as part of the project.
+
+## 🧩 VS Code Extension
+
+The **KXBuild** extension brings the same builds into VS Code: press F5 to build, sign, install on the iPhone and stop at your breakpoints. It adds code completion before the first build, visual editors for Info.plist, String Catalogs, asset catalogs and project settings, and React Native Fast Refresh. It works on Windows, Linux and macOS.
+
+![Press F5: the app starts on the iPhone, a tap stops it at a breakpoint in VS Code](images/vscode/hero.gif)
+
+Install it from the VS Code Marketplace (search for **KXBuild**). Features, screenshots and the FAQ are in [doc/en/vscode.md](doc/en/vscode.md).
 
 ## 📥 Install
 

@@ -1,0 +1,110 @@
+# KXBuild — 用 VS Code 开发 iOS 应用
+
+[English](../en/vscode.md) · **简体中文**
+
+在 VS Code 里构建 iOS 应用、装到 iPhone 真机运行、断点调试，Windows、Linux、macOS 都能用。
+按 F5，应用会自动构建、签名、安装到 USB 连接的 iPhone，并停在你设的断点上。
+
+![按 F5：应用在 iPhone 上启动，点一下就停在 VS Code 的断点上](../../images/vscode/hero.gif)
+
+## 功能
+
+**真机运行与调试。** 按 F5 构建、签名、安装并附加调试器。Swift 和 Objective-C 都能打断点、单步执行、查看变量（包括 SwiftUI 的 `@State`），也能在调试控制台里执行命令。
+
+**选择设备和配置。** KXBuild 视图里列出授权、已连接的 iPhone（USB 或 Wi-Fi）、Debug / Release 配置和工程的各个 target，点击对应的行即可切换。
+
+![KXBuild 视图和设备选择](../../images/vscode/zh/device-select.png)
+
+**几步新建项目。** 运行 *KXBuild: New Project*，可选 SwiftUI、UIKit、Objective-C、React Native、Flutter、Expo 等模板，建好后直接打开，马上就能运行。
+
+![新建项目：选模板、填名称和 Bundle ID](../../images/vscode/new-project.gif)
+
+**不用先编译就有代码补全。** 工程一打开，Swift、Objective-C、C、C++ 的补全、跳转定义和查找引用就能用。
+
+![SwiftUI 视图里的 Swift 代码补全](../../images/vscode/completion.gif)
+
+**编译错误进“问题”面板。** 编译器的错误和警告都列在“问题”面板里，点一下就跳到对应的代码行。
+
+![“问题”面板里的编译错误，指向出错的行](../../images/vscode/zh/problems.png)
+
+**Release 构建直接出 .ipa。** 切到 Release 后点击构建，签好名的 .ipa 会生成在项目的 `build` 目录，可以直接上传 App Store Connect 和 TestFlight。
+
+**在 iPhone 上跑测试。** XCTest 和 Swift Testing 用例会出现在“测试”视图里。可以在 iOS 17 及以上的设备上运行单个用例、一个类或整个测试 target，失败信息会标在对应的源码行上。
+
+### Xcode 工程文件的可视化编辑
+
+| | |
+|---|---|
+| **Info.plist**、entitlements 和隐私清单：Key / Type / Value 编辑器，XML 和二进制 plist 都支持 | ![Info.plist 编辑器](../../images/vscode/zh/plist.png) |
+| **String Catalog**（.xcstrings）和 .strings 表：按语言显示翻译进度，支持复数和设备变体，可从源码同步 key | ![String Catalog 编辑器](../../images/vscode/zh/xcstrings.png) |
+| **工程设置**：target、通用、构建设置，支持基本 / 已自定义 / 全部，以及合并和层级视图 | ![工程设置编辑器](../../images/vscode/zh/project-settings.png) |
+| **资源目录**（.xcassets）：App 图标、颜色和图片，用一张 1024×1024 的图就能填满 App 图标 | ![资源目录编辑器](../../images/vscode/zh/xcassets.png) |
+
+Icon Composer 的 `.icon` 文件也有专门的编辑器。
+
+## 支持的项目
+
+| 项目类型 | 能做什么 |
+|---|---|
+| **Swift / SwiftUI / UIKit**、Swift 包 | 构建、运行、断点调试、代码补全、所有可视化编辑器 |
+| **Objective-C**，以及 Objective-C / Swift 混编 | 同 Swift |
+| **React Native** | 按 F5 自动启动 Metro，保存即热更新，用 React Native DevTools 调试 JavaScript，也支持原生断点 |
+| **Godot**（导出的 Xcode 工程） | 在 iPhone 上构建、运行、调试导出的工程 |
+| **Flutter** | Dart 断点，保存即热重载，也支持原生断点 |
+| **Expo**、**uni-app**、**Unity**、**CocoaPods**、**cocos2d-x**、**Cordova**、**Kotlin Multiplatform** | 在 iPhone 上构建、运行、调试 |
+
+**Objective-C**：停在断点上，查看 `self` 的变量：
+
+![Objective-C 断点和 self 的变量](../../images/vscode/stack-objc.gif)
+
+**React Native**：保存 App.tsx，手机上立刻热更新：
+
+![iPhone 上的 React Native 热更新](../../images/vscode/stack-rn.gif)
+
+**Godot**：把导出的 Godot 游戏跑在 iPhone 上：
+
+![Godot 3D 场景在 iPhone 上运行](../../images/vscode/stack-godot.gif)
+
+各技术栈的分步视频教程见 [kxbuild.net](https://www.kxbuild.net)。
+
+## 快速上手
+
+装好插件后会打开“KXBuild 快速上手”向导，共四步：
+
+1. **配置工具链。** 点击“安装 KXBuild”，然后运行 *KXBuild: Doctor* 检查并修复环境。
+2. **激活授权。** 用激活码激活本机，或开始免费试用。
+3. **新建或打开项目。** 运行 *KXBuild: New Project*，或打开包含 .xcodeproj、.xcworkspace 或 Package.swift 的文件夹。
+4. **选设备、构建、调试。** 用 USB 连接 iPhone，在手机上点“信任此电脑”，打开开发者模式（设置 → 隐私与安全性），然后按 F5。
+
+签名方面，把 .p12 证书、它的密码文件和 .mobileprovision 描述文件放进项目里的 `keychain` 文件夹即可，详见[签名](../../README_zh.md#-签名)。
+
+![KXBuild 快速上手](../../images/vscode/zh/walkthrough.png)
+
+## 常见问题
+
+**能在 Windows 上开发 iOS 应用吗？**
+能。KXBuild 在 Windows 10 / 11、Linux（包括 WSL）和 macOS 上都能构建、签名、安装和调试 iOS 应用。Xcode 工程不用改，照样能用 Xcode 打开。
+
+**需要 Apple 开发者账号吗？**
+要把应用装到 iPhone 上或发布上架，需要从 Apple 开发者账号获取签名证书（.p12）和描述文件。没有的话也能构建，只是产物没有签名。
+
+**支持哪些 iPhone 和 iOS 版本？**
+运行受支持 iOS 版本、用 USB 连接的 iPhone 都可以。KXBuild 已在 iOS 16 到 iOS 26 上测试。iOS 16 及以上调试需要打开开发者模式，运行测试需要 iOS 17 及以上。
+
+**能给 Swift 打断点调试吗？**
+能。Swift 和 Objective-C 都支持断点、单步、查看变量和调试控制台，SwiftUI 的 `@State` 值也能看到。
+
+**支持 React Native 和 Godot 吗？**
+支持。React Native 项目按 F5 会自动启动 Metro，保存即热更新，JavaScript 用 React Native DevTools 调试。Godot 项目先在 Godot 编辑器里导出 iOS 工程，再用 VS Code 打开导出的文件夹，按 F5 即可。
+
+**能发布到 App Store 吗？**
+能。Release 构建会生成符合 App Store Connect 要求的已签名 .ipa，用 Transporter 或其他上传工具上传即可。
+
+**插件收费吗？**
+插件完全免费。构建由 KXBuild 工具链完成，工具链单独授权，可以先免费试用。开始试用、激活授权和查看授权状态，都能在 VS Code 的 KXBuild 视图里完成。
+
+## 链接
+
+- 官网与教程：[kxbuild.net](https://www.kxbuild.net)
+- 各类项目的命令行指南：[github.com/kxbuild/kxbuild](../../README_zh.md)
+- 反馈问题：[Issues](https://github.com/kxbuild/kxbuild/issues)

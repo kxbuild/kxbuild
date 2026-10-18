@@ -18,7 +18,7 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 ![Linux](https://img.shields.io/badge/Linux_/_WSL-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
 
-[安装](#-安装) · [工程类型](#-支持的工程类型) · [问题反馈](../../issues)
+[安装](#-安装) · [工程类型](#-支持的工程类型) · [VS Code 插件](#-vs-code-插件) · [问题反馈](../../issues)
 
 </div>
 
@@ -63,6 +63,14 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 | <img src="https://cdn.simpleicons.org/apachecordova/35434F" width="18" /> **Cordova** | [doc/zh/cordova.md](doc/zh/cordova.md) |
 
 以上工程中的 C / C++ 源码随工程一起编译。
+
+## 🧩 VS Code 插件
+
+**KXBuild** 插件把同样的构建能力带进 VS Code：按 F5 就能构建、签名、装到 iPhone，并停在你设的断点上。插件还提供不用先编译的代码补全，Info.plist、String Catalog、资源目录和工程设置的可视化编辑，以及 React Native 热更新。Windows、Linux、macOS 都能用。
+
+![按 F5：应用在 iPhone 上启动，点一下就停在 VS Code 的断点上](images/vscode/hero.gif)
+
+在 VS Code 扩展市场搜索 **KXBuild** 即可安装。功能介绍、截图和常见问题见 [doc/zh/vscode.md](doc/zh/vscode.md)。
 
 ## 📥 安装
 
