@@ -35,7 +35,7 @@
 
 | | |
 |---|---|
-| **Info.plist**、entitlements 和隐私清单：Key / Type / Value 编辑器，XML 和二进制 plist 都支持 | ![Info.plist 编辑器](../../images/vscode/zh/plist.png) |
+| **Info.plist**、entitlements 和隐私清单：在表格里编辑 Key、类型和值 | ![Info.plist 编辑器](../../images/vscode/zh/plist.png) |
 | **String Catalog**（.xcstrings）和 .strings 表：按语言显示翻译进度，支持复数和设备变体，可从源码同步 key | ![String Catalog 编辑器](../../images/vscode/zh/xcstrings.png) |
 | **工程设置**：target、通用、构建设置，支持基本 / 已自定义 / 全部，以及合并和层级视图 | ![工程设置编辑器](../../images/vscode/zh/project-settings.png) |
 | **资源目录**（.xcassets）：App 图标、颜色和图片，用一张 1024×1024 的图就能填满 App 图标 | ![资源目录编辑器](../../images/vscode/zh/xcassets.png) |
@@ -98,7 +98,7 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 支持。React Native 项目按 F5 会自动启动 Metro，保存即热更新，JavaScript 用 React Native DevTools 调试。Godot 项目先在 Godot 编辑器里导出 iOS 工程，再用 VS Code 打开导出的文件夹，按 F5 即可。
 
 **能发布到 App Store 吗？**
-能。Release 构建会生成符合 App Store Connect 要求的已签名 .ipa，用 Transporter 或其他上传工具上传即可。
+能。Release 构建会生成签好名的 .ipa，用 Transporter 或其他上传工具传到 App Store Connect 即可。
 
 **插件收费吗？**
 插件完全免费。构建由 KXBuild 工具链完成，工具链单独授权，可以先免费试用。开始试用、激活授权和查看授权状态，都能在 VS Code 的 KXBuild 视图里完成。

@@ -35,7 +35,7 @@ Press F5 and your app is built, signed, installed on the iPhone connected over U
 
 | | |
 |---|---|
-| **Info.plist**, entitlements and privacy manifests: a Key / Type / Value editor for XML and binary property lists | ![Info.plist editor](../../images/vscode/en/plist.png) |
+| **Info.plist**, entitlements and privacy manifests: edit keys, types and values in a table | ![Info.plist editor](../../images/vscode/en/plist.png) |
 | **String Catalogs** (.xcstrings) and .strings tables: languages with translation progress, plural and device variations, sync with source code | ![String Catalog editor](../../images/vscode/en/xcstrings.png) |
 | **Project settings**: targets, General and Build Settings with Basic / Customized / All, Combined and Levels views | ![Project settings editor](../../images/vscode/en/project-settings.png) |
 | **Asset catalogs** (.xcassets): app icons, colors and images; fill an app icon from one 1024×1024 image | ![Asset catalog editor](../../images/vscode/en/xcassets.png) |
@@ -98,7 +98,7 @@ Yes. Breakpoints, stepping, variables and the Debug Console work for Swift and O
 Yes. For React Native, F5 starts Metro, saves apply with Fast Refresh, and React Native DevTools debugs the JavaScript. For Godot, export the project for iOS in the Godot editor, open the exported folder in VS Code and press F5.
 
 **Can I publish to the App Store?**
-Yes. A Release build writes a signed .ipa in the layout App Store Connect expects. Upload it with Transporter or any App Store upload tool.
+Yes. A Release build makes a signed .ipa. Upload it to App Store Connect with Transporter or any other upload tool.
 
 **Is the extension free?**
 Yes, the extension is free. Builds run on the KXBuild toolchain, which has its own license with a free trial. You can start the trial, activate a license and check its status from the KXBuild view in VS Code.
