@@ -65,6 +65,18 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 
 ![Godot 3D 场景在 iPhone 上运行](../../images/vscode/stack-godot.gif)
 
+**Flutter**：保存 main.dart，手机上立即热重载：
+
+![iPhone 上的 Flutter 热重载](../../images/vscode/stack-flutter.gif)
+
+**cocos2d-x**：停在 C++ 断点上查看变量，修改场景后再运行：
+
+![cocos2d-x 的 C++ 断点和 iPhone 上改过的标签](../../images/vscode/stack-cocos2dx.gif)
+
+**Cordova**：修改 www/index.html，运行 cordova prepare ios 后再运行：
+
+![iPhone 上更新后的 Cordova 页面](../../images/vscode/stack-cordova.gif)
+
 各技术栈的分步视频教程见 [kxbuild.net](https://www.kxbuild.net)。
 
 ## 快速上手
@@ -79,6 +91,16 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 签名方面，把 .p12 证书、它的密码文件和 .mobileprovision 描述文件放进项目里的 `keychain` 文件夹即可，详见[签名](../../README_zh.md#-签名)。
 
 ![KXBuild 快速上手](../../images/vscode/zh/walkthrough.png)
+
+## 配合 AI 编码代理使用
+
+在 Windows、Linux 和 macOS 上，KXBuild 把整条链路交给 AI 代理：构建应用、装到 iPhone 上、启动、读日志、截图、查看视图层级、在屏幕上点按和输入、用断点调试。
+
+- **GitHub Copilot（代理模式）和 Cursor**：不用配置。插件会把 KXBuild 的 MCP 服务器注册给代理；编辑器自己的构建、运行和调试会话也能让 Copilot 调用，名字是 `#kxbuildBuild`、`#kxbuildRun`、`#kxbuildStack` 等。
+- **Claude Code**：`claude mcp add kxbuild -- kxbuild mcp` 和 `claude mcp add kxdevice -- kxdevice mcp`。
+- **Codex、Windsurf 和其他 MCP 客户端**：运行 *KXBuild: 复制给 AI 工具用的 MCP 服务器配置*，把 JSON 粘贴到工具的 MCP 设置里。
+
+然后对代理说“把应用构建并装到我的 iPhone 上运行，给我看截图”就行。
 
 ## 常见问题
 

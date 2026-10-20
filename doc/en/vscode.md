@@ -65,6 +65,18 @@ Icon Composer `.icon` files open in their own editor too.
 
 ![A Godot 3D scene running on the iPhone](../../images/vscode/stack-godot.gif)
 
+**Flutter** — save main.dart and hot reload updates the phone:
+
+![Flutter hot reload on the iPhone](../../images/vscode/stack-flutter.gif)
+
+**cocos2d-x** — stop at a C++ breakpoint, then change the scene and run again:
+
+![cocos2d-x C++ breakpoint and the changed label on the iPhone](../../images/vscode/stack-cocos2dx.gif)
+
+**Cordova** — edit www/index.html, run cordova prepare ios, and run again:
+
+![Cordova page change on the iPhone](../../images/vscode/stack-cordova.gif)
+
 Step-by-step video tutorials for each stack are on [kxbuild.net](https://www.kxbuild.net).
 
 ## Getting started
@@ -79,6 +91,16 @@ The *Get Started with KXBuild* walkthrough opens after you install the extension
 For signing, put your .p12 certificate, its password file and the .mobileprovision profile in a `keychain` folder in the project. See [Signing](../../README.md#-signing).
 
 ![Get Started with KXBuild](../../images/vscode/en/walkthrough.png)
+
+## Use with AI coding agents
+
+KXBuild gives an AI agent the whole loop on Windows, Linux and macOS: build the app, install it on your iPhone, launch it, read its logs, take a screenshot, inspect the view hierarchy, tap and type on the screen, and debug with breakpoints.
+
+- **GitHub Copilot (agent mode) and Cursor**: nothing to set up. The extension registers the KXBuild MCP servers with the agent; the editor's own build, run and debug session are available to Copilot as `#kxbuildBuild`, `#kxbuildRun`, `#kxbuildStack` and friends.
+- **Claude Code**: `claude mcp add kxbuild -- kxbuild mcp` and `claude mcp add kxdevice -- kxdevice mcp`.
+- **Codex, Windsurf and other MCP clients**: run *KXBuild: Copy MCP Server Configuration for AI Tools* and paste the JSON into the tool's MCP settings.
+
+Then ask the agent to "build and run the app on my iPhone and show me a screenshot".
 
 ## FAQ
 
