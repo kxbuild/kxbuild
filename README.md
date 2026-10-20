@@ -72,6 +72,10 @@ The **KXBuild** extension brings the same builds into VS Code: press F5 to build
 
 Install it from the VS Code Marketplace (search for **KXBuild**). Features, screenshots and the FAQ are in [doc/en/vscode.md](doc/en/vscode.md).
 
+## 🤖 AI Coding Agents
+
+Claude Code, GitHub Copilot, Cursor, Codex and Windsurf can build the app, run it on your iPhone, read its logs, take screenshots, tap through the screens and debug with breakpoints: `kxbuild mcp` and `kxdevice mcp` are MCP servers, every command has `--json`, and new projects carry an `AGENTS.md`. Setup for each agent is in [doc/en/ai-agents.md](doc/en/ai-agents.md).
+
 ## 📥 Install
 
 Run the command for your OS and follow the prompts.

@@ -72,6 +72,10 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 
 在 VS Code 扩展市场搜索 **KXBuild** 即可安装。功能介绍、截图和常见问题见 [doc/zh/vscode.md](doc/zh/vscode.md)。
 
+## 🤖 AI 编码代理
+
+Claude Code、GitHub Copilot、Cursor、Codex、Windsurf 都能构建应用、装到你的 iPhone 上运行、读日志、截图、逐屏点按、用断点调试：`kxbuild mcp` 和 `kxdevice mcp` 是 MCP 服务器，每条命令都有 `--json`，新建的项目自带 `AGENTS.md`。各代理的接入方法见 [doc/zh/ai-agents.md](doc/zh/ai-agents.md)。
+
 ## 📥 安装
 
 按系统执行对应命令，根据提示操作即可。
