@@ -77,6 +77,10 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 
 ![iPhone 上更新后的 Cordova 页面](../../images/vscode/stack-cordova.gif)
 
+**uni-app**：导入 HBuilderX 项目，在 iPhone 上运行：
+
+![导出后在 iPhone 上运行的 uni-app 项目](../../images/vscode/stack-uniapp.gif)
+
 各技术栈的分步视频教程见 [kxbuild.net](https://www.kxbuild.net)。
 
 ## 快速上手

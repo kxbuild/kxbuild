@@ -77,6 +77,10 @@ Icon Composer `.icon` files open in their own editor too.
 
 ![Cordova page change on the iPhone](../../images/vscode/stack-cordova.gif)
 
+**uni-app** — import an HBuilderX project, then run it on the iPhone:
+
+![A uni-app project exported and running on the iPhone](../../images/vscode/stack-uniapp.gif)
+
 Step-by-step video tutorials for each stack are on [kxbuild.net](https://www.kxbuild.net).
 
 ## Getting started
