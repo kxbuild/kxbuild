@@ -101,7 +101,7 @@ irm https://www.kxbuild.net/install.ps1 | iex
 kxbuild doctor
 ```
 
-以后升级执行 `kxbuild update`，它会安装最新版 kxbuild 并自动运行 doctor。
+以后升级再执行一次 `kxbuild doctor`，它会安装最新版 kxbuild，再更新 SDK 和各组件。
 
 ## ⌨️ 快速开始
 
@@ -137,13 +137,12 @@ kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release
 
 | 命令 | 作用 |
 |---|---|
-| `kxbuild doctor [工程]` | 检查并修复构建环境。带工程路径时还会准备该工程（Flutter、React Native、Expo、Kotlin Multiplatform、cocos2d-x 首次构建前必须执行） |
+| `kxbuild doctor [工程]` | 升级 kxbuild 及其组件，然后检查并修复构建环境。带工程路径时还会准备该工程（Flutter、React Native、Expo、Kotlin Multiplatform、cocos2d-x 首次构建前必须执行） |
 | `kxbuild build <工程>` | 编译、链接、签名并打包 .xcodeproj、.xcworkspace 或含 Package.swift 的目录，可选安装到设备 |
 | `kxbuild test <工程>` | 构建 Scheme 的测试并在已连接的 iOS 17+ 设备上运行（XCTest 与 Swift Testing） |
 | `kxbuild resolve <工程>` | 解析 Swift Package 依赖 |
 | `kxbuild project …` | 查看、创建、编辑、转换 Xcode 工程：`info`、`templates`、`create`、`settings`、`add-setting`、`add-package`、`add-target`、`add-folder`、`add-resource`、`localization`、`spm2app`、`to-spm` |
 | `kxbuild config get/set/unset` | 读取或修改本机设置 |
-| `kxbuild update` | 升级 kxbuild，然后运行 doctor |
 | `kxbuild version` | 显示版本信息 |
 
 每个命令都支持 `--help`，可查看完整参数。

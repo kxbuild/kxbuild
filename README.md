@@ -101,7 +101,7 @@ Then open a **new** terminal and check the environment. You're ready when every 
 kxbuild doctor
 ```
 
-To update later, run `kxbuild update`. It installs the newest kxbuild and then runs doctor.
+To update later, run `kxbuild doctor` again. It installs the newest kxbuild, then updates the SDKs and components.
 
 ## ⌨️ Quick Start
 
@@ -137,13 +137,12 @@ The package is written to `build\MyApp.ipa` in the project folder. Upload it to 
 
 | Command | What it does |
 |---|---|
-| `kxbuild doctor [project]` | Checks and fixes the build environment. With a project path, also prepares that project (Flutter, React Native, Expo, Kotlin Multiplatform and cocos2d-x need this before their first build) |
+| `kxbuild doctor [project]` | Updates kxbuild and its components, then checks and fixes the build environment. With a project path, also prepares that project (Flutter, React Native, Expo, Kotlin Multiplatform and cocos2d-x need this before their first build) |
 | `kxbuild build <project>` | Compiles, links, signs and packages an .xcodeproj, .xcworkspace or Package.swift folder, optionally installing it on a device |
 | `kxbuild test <project>` | Builds a scheme's tests and runs them on a connected iOS 17+ device (XCTest and Swift Testing) |
 | `kxbuild resolve <project>` | Resolves Swift package dependencies |
 | `kxbuild project …` | Inspects, creates, edits and converts Xcode projects: `info`, `templates`, `create`, `settings`, `add-setting`, `add-package`, `add-target`, `add-folder`, `add-resource`, `localization`, `spm2app`, `to-spm` |
 | `kxbuild config get/set/unset` | Reads or changes this machine's settings |
-| `kxbuild update` | Updates kxbuild, then runs doctor |
 | `kxbuild version` | Prints version information |
 
 Every command accepts `--help` for its full list of options.
