@@ -112,5 +112,5 @@ kxbuild build .\MyApp\MyApp.xcodeproj -c Release
 | Symptom | Fix |
 |---|---|
 | A Debug build fails to link with `undefined symbol: …vpfi` | A known issue in the open-source Swift compiler. It happens with a property that has an initial value, such as `@State private var count = 0`, when the struct's init is in another file. Set the environment variable `KXBUILD_SWIFT_WHOLE_MODULE=all` (or add `-D KXBUILD_SWIFT_WHOLE_MODULE=all` to one build) and build again. Swift targets are then built as a whole module. |
-| Swift packages won't download, or the build can't find a package | Run `kxbuild resolve .\MyApp.xcodeproj`. If that doesn't help, add `--force` to reset the package caches. |
+| Swift packages won't download, or the build can't find a package | Run `kxbuild project resolve .\MyApp.xcodeproj`. If that doesn't help, add `--force` to reset the package caches. |
 | `scheme / target "…" not found` | Run `kxbuild project info .\MyApp.xcodeproj` to list the schemes and targets. |

@@ -139,10 +139,12 @@ The package is written to `build\MyApp.ipa` in the project folder. Upload it to 
 |---|---|
 | `kxbuild doctor [project]` | Updates kxbuild and its components, then checks and fixes the build environment. With a project path, also prepares that project (Flutter, React Native, Expo, Kotlin Multiplatform and cocos2d-x need this before their first build) |
 | `kxbuild build <project>` | Compiles, links, signs and packages an .xcodeproj, .xcworkspace or Package.swift folder, optionally installing it on a device |
+| `kxbuild run <project>` | Builds the app, installs it on the connected iPhone and launches it; optionally collects its logs, a screenshot and its view hierarchy |
 | `kxbuild test <project>` | Builds a scheme's tests and runs them on a connected iOS 17+ device (XCTest and Swift Testing) |
-| `kxbuild resolve <project>` | Resolves Swift package dependencies |
+| `kxbuild project resolve <project>` | Resolves Swift package dependencies |
 | `kxbuild project …` | Inspects, creates, edits and converts Xcode projects: `info`, `templates`, `create`, `settings`, `add-setting`, `add-package`, `add-target`, `add-folder`, `add-resource`, `localization`, `spm2app`, `to-spm` |
-| `kxbuild config get/set/unset` | Reads or changes this machine's settings |
+| `kxbuild license …` | Shows the license state, starts a trial or activates this computer: `status`, `trial`, `activate`, `refresh`, `deactivate` |
+| `kxbuild mcp` | MCP server for AI coding agents, see [doc/en/ai-agents.md](doc/en/ai-agents.md) |
 | `kxbuild version` | Prints version information |
 
 Every command accepts `--help` for its full list of options.
@@ -187,8 +189,30 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 | Check that it compiles, without signing | `kxbuild build .\MyApp.xcodeproj -D CODE_SIGNING_ALLOWED=NO` |
 | Simulator SDK compile check | `kxbuild build .\MyApp.xcodeproj --sdk iphonesimulator -D CODE_SIGNING_ALLOWED=NO` |
 | Build one library target only | `kxbuild build .\MyApp.xcodeproj -t MyKit --ignoreDependence` |
-| Reset Swift package caches | `kxbuild resolve .\MyApp.xcworkspace --force` |
+| Reset Swift package caches | `kxbuild project resolve .\MyApp.xcworkspace --force` |
 | List schemes, targets and bundle IDs | `kxbuild project info .\MyApp.xcodeproj` |
+
+### `kxbuild run` options
+
+`kxbuild run` takes the same build options as `kxbuild build` (`-s`, `-c`, `-D`, `--clean`, `-j`, `--explain`, `--no-cache` and the Swift package options), plus:
+
+| Option | Description |
+|---|---|
+| `--udid UDID`, `--connection-type USB\|Network` | The device to run on and how to reach it. Defaults to the first connected device, over USB when both work |
+| `--no-build` / `--no-install` | Installs and launches the last build / launches the app already on the device |
+| `--kill-existing`, `--args "…"`, `--launch-timeout D` | Ends a running instance first, passes launch arguments, sets how long to wait for the app to start (default 60s) |
+| `--wait-logs D`, `--log-file FILE` | Collects the app's logs (os_log, Logger, NSLog) for this long after the launch, optionally into a JSON-lines file |
+| `--screenshot FILE`, `--view-hierarchy FILE` | Saves a PNG screenshot and the view hierarchy as JSON after the launch |
+
+### `kxbuild test` options
+
+`kxbuild test` runs on a connected device with iOS 17 or later and takes the same build options as `kxbuild build`, plus `--udid` and `--connection-type` as above and:
+
+| Option | Description |
+|---|---|
+| `--test-plan NAME` / `--test-target NAME` | Uses this test plan of the scheme / runs these test targets instead of the scheme's test action |
+| `--only-testing T[/C[/m]]`, `--skip-testing T[/C[/m]]` | Runs only / skips these tests, repeatable, like xcodebuild |
+| `--build-only` / `--xctestrun FILE` | Builds and writes the .xctestrun without running it / runs an .xctestrun without building |
 
 ## 🔁 Scripts and CI
 

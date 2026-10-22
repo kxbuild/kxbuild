@@ -82,7 +82,7 @@ This iOS project is built with KXBuild on Windows, Linux and macOS; use kxbuild 
 
 ## 常见问题
 
-**代理需要 Mac 吗？** 不需要。构建、签名、安装、截图、日志、UI 自动化和调试器都从 Windows、Linux 或 macOS 直接对 USB 连接的 iPhone 操作。
+**代理能在哪些系统上用？** Windows、Linux 和 macOS 都可以。构建、签名、安装、截图、日志、UI 自动化和调试器都直接对 USB 连接的 iPhone 操作。
 
 **应用要满足什么条件？** 开发签名的构建（项目 `keychain/` 文件夹里放 `.p12` 证书和 `.mobileprovision` 描述文件），以及已经信任这台电脑的 iPhone；UI 工具还会用到 kxdevice 首次使用时安装的 WebDriverAgent。
 

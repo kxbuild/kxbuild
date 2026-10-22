@@ -82,7 +82,7 @@ With the KXBuild extension, Copilot's agent mode can also use the editor itself:
 
 ## Common questions
 
-**Does the agent need a Mac?** No. Building, signing, installing, screenshots, logs, UI automation and the debugger all run from Windows, Linux or macOS against the iPhone connected over USB.
+**Which systems can the agent run on?** Windows, Linux and macOS. Building, signing, installing, screenshots, logs, UI automation and the debugger all work directly against the iPhone connected over USB.
 
 **What does the app need?** A development-signed build (a `.p12` certificate and a `.mobileprovision` profile in the project's `keychain/` folder) and an iPhone that has trusted the computer; the UI tools additionally use the WebDriverAgent runner that kxdevice installs on first use.
 

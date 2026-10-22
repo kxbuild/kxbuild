@@ -112,5 +112,5 @@ kxbuild build .\MyApp\MyApp.xcodeproj -c Release
 | 现象 | 解决办法 |
 |---|---|
 | Debug 构建链接失败：`undefined symbol: …vpfi` | 开源 Swift 编译器的已知问题。当属性带初始值（如 `@State private var count = 0`）且该 struct 的 init 写在另一个文件里时出现。设置环境变量 `KXBUILD_SWIFT_WHOLE_MODULE=all`（或单次构建加 `-D KXBUILD_SWIFT_WHOLE_MODULE=all`）后重新构建，Swift Target 将按整模块编译。 |
-| Swift Package 下载不了，或构建时找不到包 | 执行 `kxbuild resolve .\MyApp.xcodeproj`。仍不行时加 `--force` 重置包缓存。 |
+| Swift Package 下载不了，或构建时找不到包 | 执行 `kxbuild project resolve .\MyApp.xcodeproj`。仍不行时加 `--force` 重置包缓存。 |
 | `scheme / target "…" not found` | 执行 `kxbuild project info .\MyApp.xcodeproj` 列出全部 Scheme 和 Target。 |

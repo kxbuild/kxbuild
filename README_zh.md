@@ -139,10 +139,12 @@ kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release
 |---|---|
 | `kxbuild doctor [工程]` | 升级 kxbuild 及其组件，然后检查并修复构建环境。带工程路径时还会准备该工程（Flutter、React Native、Expo、Kotlin Multiplatform、cocos2d-x 首次构建前必须执行） |
 | `kxbuild build <工程>` | 编译、链接、签名并打包 .xcodeproj、.xcworkspace 或含 Package.swift 的目录，可选安装到设备 |
+| `kxbuild run <工程>` | 构建应用，装到已连接的 iPhone 上并启动，可选收集应用日志、截图和视图层级 |
 | `kxbuild test <工程>` | 构建 Scheme 的测试并在已连接的 iOS 17+ 设备上运行（XCTest 与 Swift Testing） |
-| `kxbuild resolve <工程>` | 解析 Swift Package 依赖 |
+| `kxbuild project resolve <工程>` | 解析 Swift Package 依赖 |
 | `kxbuild project …` | 查看、创建、编辑、转换 Xcode 工程：`info`、`templates`、`create`、`settings`、`add-setting`、`add-package`、`add-target`、`add-folder`、`add-resource`、`localization`、`spm2app`、`to-spm` |
-| `kxbuild config get/set/unset` | 读取或修改本机设置 |
+| `kxbuild license …` | 查看授权状态、申请试用或激活这台电脑：`status`、`trial`、`activate`、`refresh`、`deactivate` |
+| `kxbuild mcp` | 给 AI 编码代理用的 MCP 服务器，见 [doc/zh/ai-agents.md](doc/zh/ai-agents.md) |
 | `kxbuild version` | 显示版本信息 |
 
 每个命令都支持 `--help`，可查看完整参数。
@@ -187,8 +189,30 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 | 只检查能否编译，不签名 | `kxbuild build .\MyApp.xcodeproj -D CODE_SIGNING_ALLOWED=NO` |
 | 用模拟器 SDK 检查编译 | `kxbuild build .\MyApp.xcodeproj --sdk iphonesimulator -D CODE_SIGNING_ALLOWED=NO` |
 | 只构建某个库 Target | `kxbuild build .\MyApp.xcodeproj -t MyKit --ignoreDependence` |
-| 重置 Swift Package 缓存 | `kxbuild resolve .\MyApp.xcworkspace --force` |
+| 重置 Swift Package 缓存 | `kxbuild project resolve .\MyApp.xcworkspace --force` |
 | 列出 Scheme、Target 和 Bundle ID | `kxbuild project info .\MyApp.xcodeproj` |
+
+### `kxbuild run` 参数
+
+`kxbuild run` 的构建参数与 `kxbuild build` 相同（`-s`、`-c`、`-D`、`--clean`、`-j`、`--explain`、`--no-cache` 和 Swift Package 参数），另外还有：
+
+| 参数 | 说明 |
+|---|---|
+| `--udid UDID`、`--connection-type USB\|Network` | 在哪台设备上运行、怎么连接。默认第一台已连接的设备，优先 USB |
+| `--no-build` / `--no-install` | 安装并启动上次构建的应用 / 直接启动设备上已有的应用 |
+| `--kill-existing`、`--args "…"`、`--launch-timeout D` | 先结束正在运行的应用、传启动参数、等待应用启动的时间（默认 60s） |
+| `--wait-logs D`、`--log-file FILE` | 启动后收集这么长时间的应用日志（os_log、Logger、NSLog），可写进每行一条 JSON 的文件 |
+| `--screenshot FILE`、`--view-hierarchy FILE` | 启动后截图保存为 PNG，视图层级保存为 JSON |
+
+### `kxbuild test` 参数
+
+`kxbuild test` 在已连接的 iOS 17 及以上设备上运行，构建参数与 `kxbuild build` 相同，同样支持上面的 `--udid` 和 `--connection-type`，另外还有：
+
+| 参数 | 说明 |
+|---|---|
+| `--test-plan NAME` / `--test-target NAME` | 使用 scheme 中的这个测试计划 / 运行这些测试 target，代替 scheme 的测试动作 |
+| `--only-testing T[/C[/m]]`、`--skip-testing T[/C[/m]]` | 只运行 / 跳过这些测试，可重复，同 xcodebuild |
+| `--build-only` / `--xctestrun FILE` | 只构建并生成 .xctestrun，不运行 / 不构建，直接运行 .xctestrun |
 
 ## 🔁 脚本与 CI
 
