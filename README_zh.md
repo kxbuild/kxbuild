@@ -125,10 +125,12 @@ kxbuild project create -t app_swiftui -n MyApp -b com.example.myapp -o D:\projec
 kxbuild build D:\projects\MyApp\MyApp.xcodeproj --install
 ```
 
-**4. 构建 Release .ipa**
+**4. 构建 App Store .ipa**
+
+把 Apple Distribution 证书（.p12）和这个应用的 App Store 描述文件放到工程的 `keychain` 文件夹，然后：
 
 ```shell
-kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release
+kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release --export app-store
 ```
 
 安装包生成在工程目录下的 `build\MyApp.ipa`。用 Transporter 或其他 App Store 上传工具上传到 App Store Connect，TestFlight 和审核流程照常进行。
@@ -163,6 +165,7 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 | `-D, --setting KEY=VALUE` | 覆盖编译设置，可重复，优先级与 xcodebuild 的 `KEY=VALUE` 相同 |
 | `--xcconfig PATH` | 应用一个 .xcconfig 文件，同 xcodebuild `-xcconfig` |
 | `-o, --ipa PATH` / `--no-ipa` | 指定 .ipa 输出路径，或不打包 |
+| `--export app-store` | 用 `keychain` 里的 Apple Distribution 证书和 App Store 描述文件签名，生成可上传 App Store Connect 的 .ipa（也可以是 `ad-hoc`、`enterprise`、`development`） |
 | `-i, --install` | 构建成功后把签好名的 App 安装到已连接的 iPhone |
 | `--derivedDataDir DIR`、`--clean` | 构建输出根目录（默认 `~/DerivedData`），以及构建前清空它 |
 | `--ignoreDependence` | 只构建指定的 Target，跳过其依赖 |
@@ -176,14 +179,14 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 |---|---|
 | .app 与中间文件 | `~/DerivedData/<Name>-<hash>/`（可用 `--derivedDataDir` 修改） |
 | .ipa | Release 为 `<工程目录>/build/<App>.ipa`，其他配置为 `<App>-<Config>.ipa` |
-| `<App>.AppStoreInfo.plist` | 位于 Release .ipa 旁边，供命令行版 Transporter 的 `-assetDescription` 使用 |
+| `<App>.AppStoreInfo.plist` | 位于 `--export app-store` 构建的 .ipa 旁边，供命令行版 Transporter 的 `-assetDescription` 使用 |
 
 ### 常用命令
 
 | 目标 | 命令 |
 |---|---|
 | Debug 构建并装到 iPhone | `kxbuild build .\MyApp.xcodeproj --install` |
-| 生成上架用的 Release .ipa | `kxbuild build .\MyApp.xcodeproj -c Release` |
+| 生成上架用的 Release .ipa | `kxbuild build .\MyApp.xcodeproj -c Release --export app-store` |
 | 命令行指定发布证书 | `kxbuild build .\MyApp.xcodeproj -c Release -D CODE_SIGN_IDENTITY="Apple Distribution"` |
 | 本次构建指定版本号和 Build 号 | `kxbuild build .\MyApp.xcodeproj -D MARKETING_VERSION=1.2.0 -D CURRENT_PROJECT_VERSION=45` |
 | 只检查能否编译，不签名 | `kxbuild build .\MyApp.xcodeproj -D CODE_SIGNING_ALLOWED=NO` |
@@ -219,7 +222,7 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 所有命令成功时退出码为 0，失败时为非 0。典型的 CI 发布构建命令：
 
 ```shell
-kxbuild build MyApp.xcworkspace -s MyApp -c Release --clean --derivedDataDir ./out --skip-package-updates --ipa ./out/MyApp.ipa --json
+kxbuild build MyApp.xcworkspace -s MyApp -c Release --export app-store --clean --derivedDataDir ./out --skip-package-updates --ipa ./out/MyApp.ipa --json
 ```
 
 加 `--json` 后，stdout 每行是一个 JSON 事件（`log`、`progress`、`diagnostic`，最后一个是 `result`）：
@@ -251,7 +254,9 @@ xcrun --sdk iphoneos --show-sdk-path
 | 查询 | `-list`、`-showBuildSettings`、`-showsdks`、`-showdestinations`、`-version`，均可加 `-json` |
 | 控制 | `-jobs`、`-quiet`、`-verbose`、`-hideShellScriptEnvironment` |
 
-不支持：`analyze`、`docbuild`、`-exportArchive`、`-create-xcframework`、本地化导入导出、平台组件下载。其他 xcodebuild 选项会被接受并忽略。退出码与 xcodebuild 一致：64 用法错误，65 构建失败或不支持的动作，66 输入文件不存在。要生成用于分发的 .ipa，请用 `kxbuild build -c Release`。
+`-exportArchive` 按 ExportOptions.plist 的 `method`（`app-store-connect`、`release-testing`、`enterprise`、`debugging`，旧名字也认）用 `keychain` 里的证书和描述文件签名，把 .ipa 导出到 `-exportPath`。
+
+不支持：`analyze`、`docbuild`、`-create-xcframework`、本地化导入导出、平台组件下载。其他 xcodebuild 选项会被接受并忽略。退出码与 xcodebuild 一致：64 用法错误，65 构建失败或不支持的动作，66 输入文件不存在。要生成用于分发的 .ipa，请用 `kxbuild build -c Release --export app-store`。
 
 `xcrun` 查找并运行 SDK 和工具链中的工具（`--show-sdk-path`、`--show-sdk-version`、`-f TOOL`、`xcrun clang …`）。`codesign` 的签名与校验参数、输出和退出码都与 macOS 一致。
 

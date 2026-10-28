@@ -27,7 +27,7 @@
 
 ![“问题”面板里的编译错误，指向出错的行](../../images/vscode/zh/problems.png)
 
-**Release 构建直接出 .ipa。** 切到 Release 后点击构建，签好名的 .ipa 会生成在项目的 `build` 目录，可以直接上传 App Store Connect 和 TestFlight。
+**一条命令出 App Store .ipa。** 在命令面板或工程右键菜单运行 **KXBuild: 生成 App Store ipa**，用你的 Apple Distribution 证书和 App Store 描述文件签名 Release 构建，.ipa 生成在项目的 `build` 目录，可以直接上传 App Store Connect 和 TestFlight。
 
 **在 iPhone 上跑测试。** XCTest 和 Swift Testing 用例会出现在“测试”视图里。可以在 iOS 17 及以上的设备上运行单个用例、一个类或整个测试 target，失败信息会标在对应的源码行上。
 
@@ -124,7 +124,7 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 支持。React Native 项目按 F5 会自动启动 Metro，保存即热更新，JavaScript 用 React Native DevTools 调试。Godot 项目先在 Godot 编辑器里导出 iOS 工程，再用 VS Code 打开导出的文件夹，按 F5 即可。
 
 **能发布到 App Store 吗？**
-能。Release 构建会生成签好名的 .ipa，用 Transporter 或其他上传工具传到 App Store Connect 即可。
+能。把 Apple Distribution 证书（.p12）和这个应用的 App Store 描述文件放到工程旁边的 `keychain` 文件夹，运行 **KXBuild: 生成 App Store ipa**，再用 Transporter 或其他上传工具把 .ipa 传到 App Store Connect 即可。
 
 **插件收费吗？**
 插件完全免费。构建由 KXBuild 工具链完成，工具链单独授权，可以先免费试用。开始试用、激活授权和查看授权状态，都能在 VS Code 的 KXBuild 视图里完成。

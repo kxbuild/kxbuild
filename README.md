@@ -125,10 +125,12 @@ Connect the iPhone over USB, tap *Trust This Computer*, and turn on Developer Mo
 kxbuild build D:\projects\MyApp\MyApp.xcodeproj --install
 ```
 
-**4. Build a Release .ipa**
+**4. Build an App Store .ipa**
+
+Put your Apple Distribution certificate (.p12) and the app's App Store provisioning profile in the project's `keychain` folder, then:
 
 ```shell
-kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release
+kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release --export app-store
 ```
 
 The package is written to `build\MyApp.ipa` in the project folder. Upload it to App Store Connect with Transporter or any App Store upload tool; TestFlight and App Review work as usual.
@@ -163,6 +165,7 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 | `-D, --setting KEY=VALUE` | Overrides a build setting. Repeatable; same precedence as xcodebuild `KEY=VALUE` |
 | `--xcconfig PATH` | Applies an .xcconfig file, like xcodebuild `-xcconfig` |
 | `-o, --ipa PATH` / `--no-ipa` | Where to write the .ipa, or skip packaging |
+| `--export app-store` | Signs with an Apple Distribution certificate and an App Store profile from `keychain`, for an .ipa to upload to App Store Connect (also `ad-hoc`, `enterprise`, `development`) |
 | `-i, --install` | Installs the signed app on the connected iPhone after a successful build |
 | `--derivedDataDir DIR`, `--clean` | Build output root (default `~/DerivedData`), and empty it before building |
 | `--ignoreDependence` | Builds only the named targets, skipping their dependencies |
@@ -176,14 +179,14 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 |---|---|
 | .app and intermediates | `~/DerivedData/<Name>-<hash>/` (change with `--derivedDataDir`) |
 | .ipa | `<project dir>/build/<App>.ipa` for Release, `<App>-<Config>.ipa` for other configurations |
-| `<App>.AppStoreInfo.plist` | Next to a Release .ipa. The asset description for command-line Transporter's `-assetDescription` |
+| `<App>.AppStoreInfo.plist` | Next to an .ipa built with `--export app-store`. The asset description for command-line Transporter's `-assetDescription` |
 
 ### Common recipes
 
 | Goal | Command |
 |---|---|
 | Install a Debug build on the iPhone | `kxbuild build .\MyApp.xcodeproj --install` |
-| Release .ipa for the App Store | `kxbuild build .\MyApp.xcodeproj -c Release` |
+| Release .ipa for the App Store | `kxbuild build .\MyApp.xcodeproj -c Release --export app-store` |
 | Sign with a Distribution certificate chosen on the command line | `kxbuild build .\MyApp.xcodeproj -c Release -D CODE_SIGN_IDENTITY="Apple Distribution"` |
 | Set version and build number for one build | `kxbuild build .\MyApp.xcodeproj -D MARKETING_VERSION=1.2.0 -D CURRENT_PROJECT_VERSION=45` |
 | Check that it compiles, without signing | `kxbuild build .\MyApp.xcodeproj -D CODE_SIGNING_ALLOWED=NO` |
@@ -219,7 +222,7 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 All commands exit with 0 on success and non-zero on failure. A typical CI command for a release .ipa:
 
 ```shell
-kxbuild build MyApp.xcworkspace -s MyApp -c Release --clean --derivedDataDir ./out --skip-package-updates --ipa ./out/MyApp.ipa --json
+kxbuild build MyApp.xcworkspace -s MyApp -c Release --export app-store --clean --derivedDataDir ./out --skip-package-updates --ipa ./out/MyApp.ipa --json
 ```
 
 With `--json`, every line on stdout is one JSON event (`log`, `progress`, `diagnostic`, and a final `result`):
@@ -251,7 +254,9 @@ xcrun --sdk iphoneos --show-sdk-path
 | Queries | `-list`, `-showBuildSettings`, `-showsdks`, `-showdestinations`, `-version`, with `-json` |
 | Control | `-jobs`, `-quiet`, `-verbose`, `-hideShellScriptEnvironment` |
 
-Not supported: `analyze`, `docbuild`, `-exportArchive`, `-create-xcframework`, localization import/export and platform downloads. Other xcodebuild options are accepted and ignored. Exit codes follow xcodebuild: 64 usage error, 65 build failure or unsupported action, 66 input file not found. To produce an .ipa for distribution, use `kxbuild build -c Release`.
+`-exportArchive` signs the archive for the `method` in ExportOptions.plist (`app-store-connect`, `release-testing`, `enterprise`, `debugging`, or the older names) with the certificate and profile in `keychain`, and writes the .ipa to `-exportPath`.
+
+Not supported: `analyze`, `docbuild`, `-create-xcframework`, localization import/export and platform downloads. Other xcodebuild options are accepted and ignored. Exit codes follow xcodebuild: 64 usage error, 65 build failure or unsupported action, 66 input file not found. You can also get the App Store .ipa in one step with `kxbuild build -c Release --export app-store`.
 
 `xcrun` finds and runs SDK and toolchain tools (`--show-sdk-path`, `--show-sdk-version`, `-f TOOL`, `xcrun clang …`). `codesign` signs and verifies with the same options, output and exit codes as on macOS.
 

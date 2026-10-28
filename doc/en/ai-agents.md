@@ -71,6 +71,7 @@ This iOS project is built with KXBuild on Windows, Linux and macOS; use kxbuild 
 - Build: `kxbuild build MyApp.xcworkspace --json --no-ipa`
 - Run on the connected iPhone with logs and a screenshot: `kxbuild run MyApp.xcworkspace --json --wait-logs 10s --screenshot build/run.png`
 - Tests: `kxbuild test MyApp.xcworkspace --json`
+- App Store .ipa: `kxbuild build MyApp.xcworkspace -c Release --export app-store --json`
 - Read `data.success`, the `diagnostic` events and `data.failure.hint`; exit codes: 3 license, 4 no device, 5 build failed, 7 install or launch failed.
 - Project edits go through `kxbuild project add-package | add-resource | add-target | settings`, never through project.pbxproj by hand.
 - MCP: `claude mcp add kxbuild -- kxbuild mcp` and `claude mcp add kxdevice -- kxdevice mcp`.

@@ -27,7 +27,7 @@ Press F5 and your app is built, signed, installed on the iPhone connected over U
 
 ![A compile error in Problems, pointing at its line](../../images/vscode/en/problems.png)
 
-**Release builds to an .ipa.** Switch to Release and click Build. The signed .ipa is written to the project's `build` folder, ready for App Store Connect and TestFlight.
+**App Store .ipa in one command.** Run **KXBuild: Build for App Store (.ipa)** from the Command Palette or the project's context menu. It signs a Release build with your Apple Distribution certificate and App Store profile and writes the .ipa to the project's `build` folder, ready for App Store Connect and TestFlight.
 
 **Run tests on the iPhone.** XCTest and Swift Testing tests appear in the Testing view. Run a test, a class or a whole target on an iOS 17 or later device, with failures shown at the source line.
 
@@ -124,7 +124,7 @@ Yes. Breakpoints, stepping, variables and the Debug Console work for Swift and O
 Yes. For React Native, F5 starts Metro, saves apply with Fast Refresh, and React Native DevTools debugs the JavaScript. For Godot, export the project for iOS in the Godot editor, open the exported folder in VS Code and press F5.
 
 **Can I publish to the App Store?**
-Yes. A Release build makes a signed .ipa. Upload it to App Store Connect with Transporter or any other upload tool.
+Yes. Put your Apple Distribution certificate (.p12) and the app's App Store provisioning profile in the `keychain` folder next to the project, run **KXBuild: Build for App Store (.ipa)**, then upload the .ipa to App Store Connect with Transporter or any other upload tool.
 
 **Is the extension free?**
 Yes, the extension is free. Builds run on the KXBuild toolchain, which has its own license with a free trial. You can start the trial, activate a license and check its status from the KXBuild view in VS Code.
