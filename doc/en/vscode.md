@@ -2,6 +2,8 @@
 
 **English** · [简体中文](../zh/vscode.md)
 
+> ⚠️ **KXBuild is currently in registered testing. If you have not been invited, please do not install it yet.** To join the test, email admin@kxbuild.net. You can also ⭐ Star or Watch us on [GitHub](https://github.com/kxbuild/kxbuild) to hear when it is released.
+
 Build, run and debug iOS apps on a real iPhone from VS Code — on Windows, Linux and macOS.
 Press F5 and your app is built, signed, installed on the iPhone connected over USB, and stopped at your breakpoint.
 

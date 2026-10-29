@@ -78,6 +78,8 @@ Claude Code、GitHub Copilot、Cursor、Codex、Windsurf 都能构建应用、�
 
 ## 📥 安装
 
+> kxbuild 目前处于注册测试阶段，有意向参与测试请发邮件到 admin@kxbuild.net 或加入 QQ 群 260150910。点右上角 ⭐ **Star** 或 👀 **Watch** 关注本仓库，第一时间获取更新。
+
 按系统执行对应命令，根据提示操作即可。
 
 **Linux / macOS / WSL**
@@ -339,7 +341,8 @@ keychain 文件夹里没有工程要求的类型或团队的证书。补上对�
 <div align="center">
 
 🐛 发现问题或有建议？[提交 Issue](../../issues/new)<br/>
-请附上 `kxbuild version` 和 `kxbuild doctor -v` 的输出，以及出错命令的完整日志。
+请附上 `kxbuild version` 和 `kxbuild doctor -v` 的输出，以及出错命令的完整日志。<br/>
+⭐ 觉得有用？欢迎 [Star](../../stargazers) 本仓库，或 Watch 关注后续版本。
 
 
 </div>

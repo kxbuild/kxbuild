@@ -78,6 +78,8 @@ Claude Code, GitHub Copilot, Cursor, Codex and Windsurf can build the app, run i
 
 ## 📥 Install
 
+> kxbuild is currently in registered testing. To join, email admin@kxbuild.net. ⭐ **Star** or 👀 **Watch** this repo (top right) to get notified of updates.
+
 Run the command for your OS and follow the prompts.
 
 **Linux / macOS / WSL**
@@ -339,7 +341,8 @@ Run `kxbuild doctor -v` (with the project path, if it's project-specific). It fi
 <div align="center">
 
 🐛 Found a problem or have a suggestion? [Open an Issue](../../issues/new)<br/>
-Please include the output of `kxbuild version` and `kxbuild doctor -v`, plus the full log of the failing command.
+Please include the output of `kxbuild version` and `kxbuild doctor -v`, plus the full log of the failing command.<br/>
+⭐ Find it useful? [Star](../../stargazers) this repo, or Watch it to hear about new releases.
 
 
 </div>
