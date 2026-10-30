@@ -74,7 +74,7 @@ Install it from the VS Code Marketplace (search for **KXBuild**). Features, scre
 
 ## 🤖 AI Coding Agents
 
-Claude Code, GitHub Copilot, Cursor, Codex and Windsurf can build the app, run it on your iPhone, read its logs, take screenshots, tap through the screens and debug with breakpoints: `kxbuild mcp` and `kxdevice mcp` are MCP servers, every command has `--json`, and new projects carry an `AGENTS.md`. Setup for each agent is in [doc/en/ai-agents.md](doc/en/ai-agents.md).
+Claude Code, GitHub Copilot, Cursor, Codex and Windsurf can build the app, run it on your iPhone, read its logs, take screenshots, tap through the screens, debug with breakpoints and publish to App Store Connect: `kxbuild mcp` and `kxdevice mcp` are MCP servers, every command has `--json`, new projects carry an `AGENTS.md`, and `kxstore skill --install user` teaches the agent the App Store commands (upload, metadata, screenshots, review, TestFlight). Setup for each agent is in [doc/en/ai-agents.md](doc/en/ai-agents.md).
 
 ## 📥 Install
 
@@ -150,6 +150,7 @@ The package is written to `build\MyApp.ipa` in the project folder. Upload it to 
 | `kxbuild license …` | Shows the license state, starts a trial or activates this computer: `status`, `trial`, `activate`, `refresh`, `deactivate` |
 | `kxbuild mcp` | MCP server for AI coding agents, see [doc/en/ai-agents.md](doc/en/ai-agents.md) |
 | `kxbuild version` | Prints version information |
+| `kxstore …` | App Store Connect from the command line: `login` with an API key, `cert` / `profile` / `device` / `bundle`, `build upload`, `metadata`, `screenshot`, `review submit`, `testflight`, `iap`, `pricing`, or everything as one `kxstore release`; see [doc/en/ai-agents.md](doc/en/ai-agents.md#5-publish-to-the-app-store-with-kxstore) |
 
 Every command accepts `--help` for its full list of options.
 

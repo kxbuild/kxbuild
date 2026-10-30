@@ -2,7 +2,7 @@
 
 [English](../en/ai-agents.md) · **简体中文**
 
-AI 编码代理——Claude Code、GitHub Copilot、Cursor、Codex、Windsurf——负责写代码；kxbuild 让它像你一样验证结果：构建应用、装到你的 iPhone 上、启动、读日志、截图、查看视图层级、逐个屏幕点按、用断点调试。这一切在 Windows、Linux 和 macOS 上都能做。
+AI 编码代理——Claude Code、GitHub Copilot、Cursor、Codex、Windsurf——负责写代码；kxbuild 让它像你一样验证结果：构建应用、装到你的 iPhone 上、启动、读日志、截图、查看视图层级、逐个屏幕点按、用断点调试，再用 kxstore 上传构建并上架到 App Store Connect。这一切在 Windows、Linux 和 macOS 上都能做。
 
 接入代理有两种方式，可以同时用。
 
@@ -75,11 +75,32 @@ This iOS project is built with KXBuild on Windows, Linux and macOS; use kxbuild 
 - Read `data.success`, the `diagnostic` events and `data.failure.hint`; exit codes: 3 license, 4 no device, 5 build failed, 7 install or launch failed.
 - Project edits go through `kxbuild project add-package | add-resource | add-target | settings`, never through project.pbxproj by hand.
 - MCP: `claude mcp add kxbuild -- kxbuild mcp` and `claude mcp add kxdevice -- kxdevice mcp`.
+- App Store Connect (only when I ask): `kxstore build upload build/MyApp.ipa --json`, `kxstore release --no-submit --json`; never read AuthKey_*.p8.
 ```
 
 ## 4. 在 VS Code 里
 
 装了 KXBuild 插件后，Copilot 的代理模式还能直接用编辑器本身：`#kxbuildContext`（选中的设备、启动项目、配置）、`#kxbuildBuild` 和 `#kxbuildRun`（进度和“问题”面板和你点运行时一样）、`#kxbuildProblems`、`#kxbuildConsole`（应用输出），以及调试暂停时的 `#kxbuildThreads`、`#kxbuildStack`、`#kxbuildVariables`、`#kxbuildEvaluate`。*KXBuild: 运行（不调试）* 会构建、安装、启动后立即返回，和代理运行应用的方式一样；*KXBuild: 停止应用* 结束它。
+
+## 5. 用 kxstore 上架 App Store
+
+kxstore 是 KXBuild 的 App Store Connect 命令行，随 KXBuild 一起安装。它用 Apple 公开的 App Store Connect API 和一把 API 密钥（App Store Connect → 用户和访问 → 集成 → 团队密钥）工作，没有 Apple ID 密码，也没有双重认证，代理可以无人值守地运行。每条命令都支持 `--json`，`kxstore exit-codes` 列出退出码。
+
+```
+kxstore login --api-key-file AuthKey_ABC123.json --alias ci     # 登录一次，密钥加密保存
+kxbuild build MyApp.xcodeproj -c Release --export app-store --json
+kxstore build upload build/MyApp.ipa --wait --json             # Apple 在上传过程中校验
+kxstore metadata export --dir metadata-bundle --json           # 改各语言的文本文件，然后：
+kxstore metadata import --dir metadata-bundle --json
+kxstore screenshot upload --locale zh-Hans screenshots/zh-Hans --json
+kxstore review submit --yes --json
+```
+
+也可以整个流程一起跑：`kxstore init --bundle-id com.example.app --name "My App"` 生成 `kxstore.yaml`，`kxstore release --dry-run --json` 看计划，`kxstore release --no-submit --json` 做完提审之前的全部步骤，`kxstore release --json` 连提审一起做。每步幂等，失败后重跑从失败的那一步继续。
+
+- `kxstore skill --install user` 生成 SKILL.md（使用规则、退出码、重试策略、命令索引），Claude Code 在所有项目里都会读到；`kxstore skill --format agents >> AGENTS.md` 给其他代理追加同样的内容。用 `kxbuild project create` 创建的项目，AGENTS.md 里已经写好了上传和 release 的用法。
+- 有三件事 Apple 没有提供 API，每个 App 在 App Store Connect 网页上做一次：新建 App 记录、填写隐私标签、接受协议。命令会返回 `capability_not_supported`（退出码 5）并说明去哪里做，代理把这一步交给你，做完后重跑。
+- `.p8` 密钥不要进代理的上下文：交给 `kxstore login` 一次，或者放在环境变量 `KXSTORE_API_KEY_ID`、`KXSTORE_API_ISSUER_ID`、`KXSTORE_API_KEY_PATH` 里。什么时候提审由你决定：`--no-submit` 停在提审之前，`review submit` 要带 `--yes`，发布方式为 MANUAL 时最后的 `kxstore version publish` 也由你执行。
 
 ## 常见问题
 

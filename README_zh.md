@@ -74,7 +74,7 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 
 ## 🤖 AI 编码代理
 
-Claude Code、GitHub Copilot、Cursor、Codex、Windsurf 都能构建应用、装到你的 iPhone 上运行、读日志、截图、逐屏点按、用断点调试：`kxbuild mcp` 和 `kxdevice mcp` 是 MCP 服务器，每条命令都有 `--json`，新建的项目自带 `AGENTS.md`。各代理的接入方法见 [doc/zh/ai-agents.md](doc/zh/ai-agents.md)。
+Claude Code、GitHub Copilot、Cursor、Codex、Windsurf 都能构建应用、装到你的 iPhone 上运行、读日志、截图、逐屏点按、用断点调试，还能上架到 App Store Connect：`kxbuild mcp` 和 `kxdevice mcp` 是 MCP 服务器，每条命令都有 `--json`，新建的项目自带 `AGENTS.md`，`kxstore skill --install user` 把上架命令（上传、元数据、截图、提审、TestFlight）教给代理。各代理的接入方法见 [doc/zh/ai-agents.md](doc/zh/ai-agents.md)。
 
 ## 📥 安装
 
@@ -150,6 +150,7 @@ kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release --export app-store
 | `kxbuild license …` | 查看授权状态、申请试用或激活这台电脑：`status`、`trial`、`activate`、`refresh`、`deactivate` |
 | `kxbuild mcp` | 给 AI 编码代理用的 MCP 服务器，见 [doc/zh/ai-agents.md](doc/zh/ai-agents.md) |
 | `kxbuild version` | 显示版本信息 |
+| `kxstore …` | 命令行上架 App Store Connect：`login` 用 API 密钥登录，`cert` / `profile` / `device` / `bundle` 签名资源，`build upload` 上传 ipa，`metadata`、`screenshot`、`review submit`、`testflight`、`iap`、`pricing`，或者一条 `kxstore release` 跑完整个流程；见 [doc/zh/ai-agents.md](doc/zh/ai-agents.md#5-用-kxstore-上架-app-store) |
 
 每个命令都支持 `--help`，可查看完整参数。
 
