@@ -78,7 +78,7 @@ Claude Code、GitHub Copilot、Cursor、Codex、Windsurf 都能构建应用、�
 
 ## 📥 安装
 
-> kxbuild 目前处于注册测试阶段。想参与测试，请发邮件至 admin@kxbuild.net 或加 QQ 877028320。点右上角 ⭐ **Star** 或 👀 **Watch** 关注本仓库，第一时间获取更新。
+> kxbuild 目前处于注册测试阶段。想参与测试，请发邮件至 admin@kxbuild.net。点右上角 ⭐ **Star** 或 👀 **Watch** 关注本仓库，第一时间获取更新。
 
 按系统执行对应命令，根据提示操作即可。
 
