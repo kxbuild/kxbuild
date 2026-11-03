@@ -78,7 +78,7 @@ Claude Code, GitHub Copilot, Cursor, Codex and Windsurf can build the app, run i
 
 ## 📥 Install
 
-> kxbuild is currently in registered testing. To join, email admin@kxbuild.net. ⭐ **Star** or 👀 **Watch** this repo (top right) to get notified of updates.
+> kxbuild is currently in private beta. [Sign up](https://www.kxbuild.net/invite?to=register) to join the waitlist, and we'll email you when your access is ready. ⭐ **Star** or 👀 **Watch** this repo (top right) to get notified of updates.
 
 Run the command for your OS and follow the prompts.
 
