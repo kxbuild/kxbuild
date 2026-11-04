@@ -30,7 +30,7 @@ and produces signed .ipa files ready for the App Store. Runs on Windows, Linux a
 | 📂 **No project changes** | Build settings, schemes, target dependencies and compiler flags are read by Xcode's rules |
 | 🔧 **xcodebuild compatible** | Ships drop-in `xcodebuild`, `xcrun` and `codesign`, so framework build scripts run unchanged |
 | 🔏 **Signing built in** | Drop your .p12 and .mobileprovision into a `keychain` folder and every build signs automatically |
-| 📦 **One command to .ipa** | A Release build writes an App Store-ready .ipa, including SwiftSupport and the Transporter asset description |
+| 📦 **One command to .ipa** | A Release build writes an App Store-ready .ipa, including SwiftSupport |
 | 📱 **Install on device** | `--install` builds, signs and installs on a USB-connected iPhone in one step |
 | 🤖 **Script and CI friendly** | `--json` prints one JSON event per line, and exit codes follow the usual 0 / non-zero rule |
 | ✍️ **Any editor** | Use it from a terminal, a CI pipeline, or whichever editor you like. Nothing to configure in the project |
@@ -135,7 +135,7 @@ Put your Apple Distribution certificate (.p12) and the app's App Store provision
 kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release --export app-store
 ```
 
-The package is written to `build\MyApp.ipa` in the project folder. Upload it to App Store Connect with Transporter or any App Store upload tool; TestFlight and App Review work as usual.
+The package is written to `build\MyApp.ipa` in the project folder. Upload it to App Store Connect with kxstore (`kxstore build upload build\MyApp.ipa`); TestFlight and App Review work as usual.
 
 ## 🛠️ kxbuild Commands
 
@@ -182,7 +182,6 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 |---|---|
 | .app and intermediates | `~/DerivedData/<Name>-<hash>/` (change with `--derivedDataDir`) |
 | .ipa | `<project dir>/build/<App>.ipa` for Release, `<App>-<Config>.ipa` for other configurations |
-| `<App>.AppStoreInfo.plist` | Next to an .ipa built with `--export app-store`. The asset description for command-line Transporter's `-assetDescription` |
 
 ### Common recipes
 

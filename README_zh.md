@@ -30,7 +30,7 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 | 📂 **工程零改动** | 按 Xcode 的规则读取编译设置、Scheme、Target 依赖和编译参数 |
 | 🔧 **兼容 xcodebuild** | 自带同名的 `xcodebuild`、`xcrun`、`codesign`，各框架的构建脚本无需修改 |
 | 🔏 **内置签名** | 把 .p12 和 .mobileprovision 放进 `keychain` 文件夹，每次构建自动签名 |
-| 📦 **一条命令出 .ipa** | Release 构建直接生成可上传 App Store 的 .ipa，包含 SwiftSupport 和 Transporter 资源描述文件 |
+| 📦 **一条命令出 .ipa** | Release 构建直接生成可上传 App Store 的 .ipa，包含 SwiftSupport |
 | 📱 **装到真机** | 加 `--install` 一步完成构建、签名并安装到 USB 连接的 iPhone |
 | 🤖 **适合脚本和 CI** | `--json` 每行输出一个 JSON 事件，退出码遵循 0 成功、非 0 失败 |
 | ✍️ **任意编辑器** | 在终端、CI 流水线或任何你习惯的编辑器里使用，工程里不需要额外配置 |
@@ -135,7 +135,7 @@ kxbuild build D:\projects\MyApp\MyApp.xcodeproj --install
 kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release --export app-store
 ```
 
-安装包生成在工程目录下的 `build\MyApp.ipa`。用 Transporter 或其他 App Store 上传工具上传到 App Store Connect，TestFlight 和审核流程照常进行。
+安装包生成在工程目录下的 `build\MyApp.ipa`。用 kxstore（`kxstore build upload build\MyApp.ipa`）上传到 App Store Connect，TestFlight 和审核流程照常进行。
 
 ## 🛠️ kxbuild 命令
 
@@ -182,7 +182,6 @@ kxbuild build <project.xcodeproj|project.xcworkspace|package dir> [flags]
 |---|---|
 | .app 与中间文件 | `~/DerivedData/<Name>-<hash>/`（可用 `--derivedDataDir` 修改） |
 | .ipa | Release 为 `<工程目录>/build/<App>.ipa`，其他配置为 `<App>-<Config>.ipa` |
-| `<App>.AppStoreInfo.plist` | 位于 `--export app-store` 构建的 .ipa 旁边，供命令行版 Transporter 的 `-assetDescription` 使用 |
 
 ### 常用命令
 
