@@ -37,21 +37,17 @@ cd ios
 pod install
 ```
 
-### 4. 构建并安装到 iPhone
+### 4. 在 iPhone 上运行
 
-配置好[签名](../../README_zh.md#-签名)，用 USB 连接 iPhone。Debug 构建的 JS 从 Metro 加载，所以先在工程目录另开一个终端启动 Metro：
-
-```shell
-npx react-native start
-```
-
-然后构建并安装：
+配置好[签名](../../README_zh.md#-签名)，用 USB 连接 iPhone，在工程目录执行：
 
 ```shell
-kxbuild build .\ios\rnhello.xcworkspace --install
+kxbuild run .\ios\rnhello.xcworkspace
 ```
 
-iPhone 和电脑需要在同一个网络，App 才能连上 Metro。
+kxbuild 构建、安装并启动 App，同时在这个终端里启动 Metro，App 通过 USB 从 Metro 加载 JS。保存代码后 Fast Refresh 会更新 App，在终端按 `r` 可以重新加载。按 Ctrl-C 停止 Metro。
+
+Metro 已经在另一个终端运行时，kxbuild 直接使用它。
 
 ### 5. 发布
 
@@ -65,6 +61,7 @@ kxbuild build .\ios\rnhello.xcworkspace -c Release
 
 | 问题 | 解决办法 |
 |---|---|
-| App 启动后红屏 | iPhone 连不上 Metro。让 iPhone 和电脑处于同一网络，并在防火墙中放行 Metro 端口 |
+| App 启动后红屏 | App 连不上 Metro。用 `kxbuild run` 启动 App，并保持它的终端开着；iPhone 用 USB 连接电脑。Metro 就绪后在 App 里点 Reload JS |
+| WSL 中构建和加载 JS 很慢 | 把工程放在 Linux 主目录（`~/`）下，不要放在 `/mnt/` 下的 Windows 盘 |
 | Run Script 阶段失败 | 带工程路径执行 `kxbuild doctor <工程目录>`，它会安装 React Native 脚本需要的依赖 |
 | Windows 上报路径错误 | 把工程放在 `D:\work` 这样的短路径下。doctor 会开启 Windows 长路径支持（需一次管理员授权） |

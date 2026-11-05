@@ -37,19 +37,17 @@ cd ios
 pod install
 ```
 
-### 4. Build and install on the iPhone
+### 4. Run on the iPhone
 
-Set up [signing](../../README.md#-signing) and connect the iPhone over USB. A Debug build loads its JS from the dev server, so start it in a second terminal in the project folder:
-
-```shell
-npx expo start
-```
-
-Then build and install:
+Set up [signing](../../README.md#-signing), connect the iPhone over USB and run this in the project folder:
 
 ```shell
-kxbuild build .\ios\expohello.xcworkspace --install
+kxbuild run .\ios\expohello.xcworkspace
 ```
+
+kxbuild builds, installs and launches the app, and starts the Expo dev server (`npx expo start`) in the same terminal; the app loads its JS from it over USB. Saving your code updates the app through Fast Refresh, and Expo's terminal shortcuts (`r` to reload, `j` to open the debugger) work as usual. Press Ctrl-C to stop the dev server.
+
+If the dev server is already running in another terminal, kxbuild uses it.
 
 ### 5. Release
 
@@ -63,5 +61,6 @@ kxbuild build .\ios\expohello.xcworkspace -c Release
 
 | Problem | Fix |
 |---|---|
-| The app shows a red screen on launch | The iPhone can't reach the dev server. Put the iPhone and the computer on the same network, and allow the port through the firewall |
+| The app shows a red screen on launch | The app can't reach the dev server. Start the app with `kxbuild run` and keep its terminal open, with the iPhone connected over USB. Once the dev server is ready, tap Reload JS in the app |
+| In WSL the build fails because scanning for Expo modules didn't complete, or JS loads slowly | Keep the project under your Linux home (`~/`), not on a Windows drive under `/mnt/` |
 | There's no `ios` folder | Run `kxbuild doctor <project dir>` with the project path. It generates the iOS project |

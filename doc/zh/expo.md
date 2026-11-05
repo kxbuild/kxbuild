@@ -37,19 +37,17 @@ cd ios
 pod install
 ```
 
-### 4. 构建并安装到 iPhone
+### 4. 在 iPhone 上运行
 
-配置好[签名](../../README_zh.md#-签名)，用 USB 连接 iPhone。Debug 构建的 JS 从开发服务器加载，所以先在工程目录另开一个终端启动它：
-
-```shell
-npx expo start
-```
-
-然后构建并安装：
+配置好[签名](../../README_zh.md#-签名)，用 USB 连接 iPhone，在工程目录执行：
 
 ```shell
-kxbuild build .\ios\expohello.xcworkspace --install
+kxbuild run .\ios\expohello.xcworkspace
 ```
+
+kxbuild 构建、安装并启动 App，同时在这个终端里启动 Expo 开发服务器（`npx expo start`），App 通过 USB 从它加载 JS。保存代码后 Fast Refresh 会更新 App，终端里的 Expo 快捷键（`r` 重新加载、`j` 打开调试器）照常可用。按 Ctrl-C 停止开发服务器。
+
+开发服务器已经在另一个终端运行时，kxbuild 直接使用它。
 
 ### 5. 发布
 
@@ -63,5 +61,6 @@ kxbuild build .\ios\expohello.xcworkspace -c Release
 
 | 问题 | 解决办法 |
 |---|---|
-| App 启动后红屏 | iPhone 连不上开发服务器。让 iPhone 和电脑处于同一网络，并在防火墙中放行端口 |
+| App 启动后红屏 | App 连不上开发服务器。用 `kxbuild run` 启动 App，并保持它的终端开着；iPhone 用 USB 连接电脑。开发服务器就绪后在 App 里点 Reload JS |
+| WSL 中构建失败，提示扫描 Expo 模块未完成，或加载 JS 很慢 | 把工程放在 Linux 主目录（`~/`）下，不要放在 `/mnt/` 下的 Windows 盘 |
 | 没有 `ios` 目录 | 带工程路径执行 `kxbuild doctor <工程目录>`，它会生成 iOS 工程 |

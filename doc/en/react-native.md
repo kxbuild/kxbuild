@@ -37,21 +37,17 @@ cd ios
 pod install
 ```
 
-### 4. Build and install on the iPhone
+### 4. Run on the iPhone
 
-Set up [signing](../../README.md#-signing) and connect the iPhone over USB. A Debug build loads its JS from Metro, so start Metro in a second terminal in the project folder:
-
-```shell
-npx react-native start
-```
-
-Then build and install:
+Set up [signing](../../README.md#-signing), connect the iPhone over USB and run this in the project folder:
 
 ```shell
-kxbuild build .\ios\rnhello.xcworkspace --install
+kxbuild run .\ios\rnhello.xcworkspace
 ```
 
-The iPhone and the computer must be on the same network so the app can reach Metro.
+kxbuild builds, installs and launches the app, and starts Metro in the same terminal; the app loads its JS from Metro over USB. Saving your code updates the app through Fast Refresh, and pressing `r` in the terminal reloads it. Press Ctrl-C to stop Metro.
+
+If Metro is already running in another terminal, kxbuild uses it.
 
 ### 5. Release
 
@@ -65,6 +61,7 @@ kxbuild build .\ios\rnhello.xcworkspace -c Release
 
 | Problem | Fix |
 |---|---|
-| The app shows a red screen on launch | The iPhone can't reach Metro. Put the iPhone and the computer on the same network, and allow the Metro port through the firewall |
+| The app shows a red screen on launch | The app can't reach Metro. Start the app with `kxbuild run` and keep its terminal open, with the iPhone connected over USB. Once Metro is ready, tap Reload JS in the app |
+| Builds and JS loading are slow in WSL | Keep the project under your Linux home (`~/`), not on a Windows drive under `/mnt/` |
 | A Run Script phase fails | Run `kxbuild doctor <project dir>` with the project path. It installs what the React Native scripts need |
 | Path errors on Windows | Keep the project in a short path such as `D:\work`. Doctor turns on Windows long path support (one admin approval) |
