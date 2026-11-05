@@ -47,7 +47,7 @@ kxbuild run .\ios\rnhello.xcworkspace
 
 kxbuild 构建、安装并启动 App，同时在这个终端里启动 Metro，App 通过 USB 从 Metro 加载 JS。保存代码后 Fast Refresh 会更新 App，在终端按 `r` 可以重新加载。按 Ctrl-C 停止 Metro。
 
-Metro 已经在另一个终端运行时，kxbuild 直接使用它。
+Metro 已经在另一个终端运行时，kxbuild 直接使用它。USB 这条路怎么工作、其他框架怎么接入，见[开发服务器走 USB](dev-server.md)。
 
 ### 5. 发布
 

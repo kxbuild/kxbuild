@@ -47,7 +47,7 @@ kxbuild run .\ios\expohello.xcworkspace
 
 kxbuild builds, installs and launches the app, and starts the Expo dev server (`npx expo start`) in the same terminal; the app loads its JS from it over USB. Saving your code updates the app through Fast Refresh, and Expo's terminal shortcuts (`r` to reload, `j` to open the debugger) work as usual. Press Ctrl-C to stop the dev server.
 
-If the dev server is already running in another terminal, kxbuild uses it.
+If the dev server is already running in another terminal, kxbuild uses it. How the USB path works: [Dev server over USB](dev-server.md).
 
 ### 5. Release
 

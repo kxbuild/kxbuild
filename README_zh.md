@@ -60,6 +60,7 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 | <img src="https://cdn.simpleicons.org/unity/000000" width="18" /> **Unity**（导出的 Xcode 工程） | [doc/zh/unity.md](doc/zh/unity.md) |
 | <img src="https://cdn.simpleicons.org/godotengine/478CBF" width="18" /> **Godot**（导出的 Xcode 工程） | [doc/zh/godot.md](doc/zh/godot.md) |
 | <img src="https://cdn.simpleicons.org/cocos/55C2E1" width="18" /> **cocos2d-x** | [doc/zh/cocos2d-x.md](doc/zh/cocos2d-x.md) |
+| 🔌 **开发服务器走 USB**（Metro、livereload，任何框架） | [doc/zh/dev-server.md](doc/zh/dev-server.md) |
 | <img src="https://cdn.simpleicons.org/apachecordova/35434F" width="18" /> **Cordova** | [doc/zh/cordova.md](doc/zh/cordova.md) |
 
 以上工程中的 C / C++ 源码随工程一起编译。

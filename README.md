@@ -60,6 +60,7 @@ Each guide shows how to prepare and build that kind of project with the `kxbuild
 | <img src="https://cdn.simpleicons.org/unity/000000" width="18" /> **Unity** (exported Xcode project) | [doc/en/unity.md](doc/en/unity.md) |
 | <img src="https://cdn.simpleicons.org/godotengine/478CBF" width="18" /> **Godot** (exported Xcode project) | [doc/en/godot.md](doc/en/godot.md) |
 | <img src="https://cdn.simpleicons.org/cocos/55C2E1" width="18" /> **cocos2d-x** | [doc/en/cocos2d-x.md](doc/en/cocos2d-x.md) |
+| 🔌 **Dev server over USB** (Metro, livereload, any framework) | [doc/en/dev-server.md](doc/en/dev-server.md) |
 | <img src="https://cdn.simpleicons.org/apachecordova/35434F" width="18" /> **Cordova** | [doc/en/cordova.md](doc/en/cordova.md) |
 
 C and C++ sources inside any of these projects build as part of the project.

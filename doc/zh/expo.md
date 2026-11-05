@@ -47,7 +47,7 @@ kxbuild run .\ios\expohello.xcworkspace
 
 kxbuild 构建、安装并启动 App，同时在这个终端里启动 Expo 开发服务器（`npx expo start`），App 通过 USB 从它加载 JS。保存代码后 Fast Refresh 会更新 App，终端里的 Expo 快捷键（`r` 重新加载、`j` 打开调试器）照常可用。按 Ctrl-C 停止开发服务器。
 
-开发服务器已经在另一个终端运行时，kxbuild 直接使用它。
+开发服务器已经在另一个终端运行时，kxbuild 直接使用它。USB 这条路怎么工作，见[开发服务器走 USB](dev-server.md)。
 
 ### 5. 发布
 

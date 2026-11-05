@@ -47,7 +47,7 @@ kxbuild run .\ios\rnhello.xcworkspace
 
 kxbuild builds, installs and launches the app, and starts Metro in the same terminal; the app loads its JS from Metro over USB. Saving your code updates the app through Fast Refresh, and pressing `r` in the terminal reloads it. Press Ctrl-C to stop Metro.
 
-If Metro is already running in another terminal, kxbuild uses it.
+If Metro is already running in another terminal, kxbuild uses it. How the USB path works, and how other frameworks use it: [Dev server over USB](dev-server.md).
 
 ### 5. Release
 
