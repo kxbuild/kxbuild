@@ -48,9 +48,45 @@ cordova prepare ios
 kxbuild build .\platforms\ios\App.xcworkspace --install
 ```
 
-### 5. 改 Web 代码不重新构建
+### 5. 改网页代码不重新构建
 
-开发阶段可以让 App 通过 USB 从电脑上加载 `www/`，改完代码 `cordova prepare ios` 再在 App 里重新加载即可，做法见[开发服务器走 USB](dev-server.md)里的 Cordova 例子。
+默认每次改 `www/` 都要 `cordova prepare ios` 再重新构建安装。开发阶段可以改成让 App 通过数据线直接从电脑上读 `www/`，改完几秒就能在手机上看到，不用重新构建。配置一次即可：
+
+1. 在工程目录建一个 `ops.json`，告诉 kxbuild 开发服务器的端口和启动命令：
+
+   ```json
+   [
+     {"op":"set","owner":"App","config":"Debug","key":"KXBUILD_DEV_SERVER_PORTS","value":"8000"},
+     {"op":"set","owner":"App","config":"Debug","key":"KXBUILD_DEV_SERVER_COMMAND","value":"python -m http.server 8000 --bind 127.0.0.1 --directory platforms/ios/www"},
+     {"op":"set","owner":"App","config":"Debug","key":"KXBUILD_DEV_SERVER_DIR","value":"$(SRCROOT)/../.."}
+   ]
+   ```
+
+   然后写进 iOS 工程（需要已安装 Python 3）：
+
+   ```shell
+   kxbuild project settings apply .\platforms\ios\App.xcworkspace --ops ops.json
+   ```
+
+2. 在 `config.xml` 里把首页改成从电脑加载，并允许访问：
+
+   ```xml
+   <content src="http://127.0.0.1:8000/index.html" />
+   <allow-navigation href="http://127.0.0.1:*/*" />
+   ```
+
+3. 同步一次并运行：
+
+   ```shell
+   cordova prepare ios
+   kxbuild run .\platforms\ios\App.xcworkspace
+   ```
+
+   kxbuild 构建、安装并启动 App，同时在这个终端启动开发服务器和数据线连接。在 VS Code 里按 F5 效果相同。
+
+之后的日常开发：改 `www/` 下的代码，执行 `cordova prepare ios`，再重新打开 App（或执行 `kxbuild run .\platforms\ios\App.xcworkspace --no-build --no-install --kill-existing`，几秒），新页面就显示出来了。只有改了原生插件代码或 `config.xml` 时才需要重新构建。原生插件代码可以在 VS Code 里按 F5 运行并打断点。
+
+发布前把 `content src` 改回 `index.html`，Release 包不受上面设置的影响。
 
 ### 6. 发布
 

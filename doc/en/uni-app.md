@@ -58,6 +58,8 @@ Set up [signing](../../README.md#-signing), connect the iPhone over USB, then:
 kxbuild build D:\work\myuniapp-ios\HBuilder-Hello\HBuilder-Hello.xcworkspace -s HBuilder --install
 ```
 
+After changing pages in HBuilderX, run step 2's `uniapp2xcode … --update` again (seconds when only pages changed), then the build-and-install command above, and the phone shows the new pages. If the app still shows the old pages after an overwrite install, delete it on the phone first and install again.
+
 ### 5. Release
 
 Build with the Release configuration to get an .ipa named after your app under `HBuilder-Hello\build` in the output folder.

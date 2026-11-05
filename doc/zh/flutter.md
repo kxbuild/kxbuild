@@ -45,7 +45,18 @@ pod install
 kxbuild build .\ios\Runner.xcworkspace -c Release --install
 ```
 
-### 5. 发布
+### 5. 热重载和断点
+
+要边改 Dart 代码边看效果，在 VS Code 里做：
+
+1. 安装 KXBuild 插件和官方的 Dart 插件，打开工程目录。
+2. 在 KXBuild 视图中选中 iPhone，按 F5。App 以 Debug 配置构建、安装并启动，启动后自动接上 Dart 调试器。第一次调试某个 iOS 版本时会下载一次符号库，之后不用等。
+3. 改 Dart 代码保存，热重载立刻把改动推到手机上，页面状态保留；需要重跑 `main()` 时用调试工具栏的热重启。
+4. Dart 断点直接在 `.dart` 文件里打；原生代码（`ios/Runner` 下的 Swift）的断点同样有效，两边同时可用。
+
+改了 `pubspec.yaml` 里的依赖、`ios/` 下的原生代码或 Info.plist，停止调试后重新按 F5。命令行上没有热重载：Debug 包离开调试器就退出，所以命令行用上面的 Release 构建来试用，改了 Dart 代码重新构建安装。
+
+### 6. 发布
 
 用 Release 配置构建，在 `ios` 目录下得到 `build\Runner.ipa`，可直接上传 App Store Connect。
 

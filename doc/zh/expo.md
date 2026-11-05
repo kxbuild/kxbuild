@@ -45,11 +45,26 @@ pod install
 kxbuild run .\ios\expohello.xcworkspace
 ```
 
-kxbuild 构建、安装并启动 App，同时在这个终端里启动 Expo 开发服务器（`npx expo start`），App 通过 USB 从它加载 JS。保存代码后 Fast Refresh 会更新 App，终端里的 Expo 快捷键（`r` 重新加载、`j` 打开调试器）照常可用。按 Ctrl-C 停止开发服务器。
+kxbuild 构建、安装并启动 App，同时在这个终端里启动 Expo 开发服务器（`npx expo start`）。App 通过数据线从它加载 JS，手机和电脑不需要在同一个 Wi-Fi 下。开发服务器已经在另一个终端运行时直接复用；按 Ctrl-C 停止。
 
-开发服务器已经在另一个终端运行时，kxbuild 直接使用它。USB 这条路怎么工作，见[开发服务器走 USB](dev-server.md)。
+在 VS Code 里装了 KXBuild 插件的话，选中设备按 F5 就是这一套：插件自动启动开发服务器，App 启动后提示已连上。
 
-### 5. 发布
+### 5. 改代码立刻看效果
+
+App 跑起来之后，保持开发服务器的终端（或 VS Code 窗口）开着，按改的东西分三种情况：
+
+| 改了什么 | 要做的事 |
+|---|---|
+| JS / TypeScript、样式、图片、路由文件 | 保存即可，Fast Refresh 几秒内更新到手机上，页面状态保留。没刷出来就在终端按 `r`，或摇一摇手机点 Reload |
+| `app.json`、`app.config.js`，或装了带原生代码的 Expo 模块 / npm 包 | 删掉 `ios` 目录，重新执行 `kxbuild doctor` 生成，在 `ios` 目录 `pod install`，再执行 `kxbuild run` |
+| `ios/` 下的原生代码 | 重新执行 `kxbuild run`（VS Code 里重新按 F5）。注意下次重新生成 `ios` 目录会覆盖手改的内容 |
+
+调试：
+
+- JS 断点和日志：在终端按 `j` 打开 Expo 的调试器，在 Sources 面板打断点，Console 面板看 `console.log`。
+- 原生断点：在 VS Code 里按 F5 运行，直接在 `ios/` 下的 Swift / Objective-C 代码上打断点，和 JS 调试互不影响。
+
+### 6. 发布
 
 用 Release 配置构建，JS 会打包进 App，.ipa 生成在 `ios` 目录下。
 

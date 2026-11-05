@@ -58,6 +58,8 @@ kxbuild doctor D:\work\myuniapp-ios\HBuilder-Hello\HBuilder-Hello.xcworkspace
 kxbuild build D:\work\myuniapp-ios\HBuilder-Hello\HBuilder-Hello.xcworkspace -s HBuilder --install
 ```
 
+之后在 HBuilderX 里改了页面，重新执行第 2 步的 `uniapp2xcode … --update`（只改页面时几秒完成），再执行上面的构建安装命令，手机上就是新页面。覆盖安装后 App 还显示旧页面时，先在手机上删掉 App 再装。
+
 ### 5. 发布
 
 用 Release 配置构建，在输出目录的 `HBuilder-Hello\build` 下得到以 App 名称命名的 .ipa。

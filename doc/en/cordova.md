@@ -50,7 +50,43 @@ kxbuild build .\platforms\ios\App.xcworkspace --install
 
 ### 5. Change web code without rebuilding
 
-During development the app can load `www/` from the computer over USB: edit, run `cordova prepare ios` and reload in the app. See the Cordova example in [Dev server over USB](dev-server.md).
+By default every change under `www/` takes a `cordova prepare ios` and a rebuild. During development you can have the app read `www/` straight from the computer over the USB cable instead, so a change shows up on the phone in seconds with no rebuild. Set it up once:
+
+1. In the project folder, create `ops.json` with the dev server's port and command for kxbuild:
+
+   ```json
+   [
+     {"op":"set","owner":"App","config":"Debug","key":"KXBUILD_DEV_SERVER_PORTS","value":"8000"},
+     {"op":"set","owner":"App","config":"Debug","key":"KXBUILD_DEV_SERVER_COMMAND","value":"python -m http.server 8000 --bind 127.0.0.1 --directory platforms/ios/www"},
+     {"op":"set","owner":"App","config":"Debug","key":"KXBUILD_DEV_SERVER_DIR","value":"$(SRCROOT)/../.."}
+   ]
+   ```
+
+   Then write it into the iOS project (Python 3 must be installed):
+
+   ```shell
+   kxbuild project settings apply .\platforms\ios\App.xcworkspace --ops ops.json
+   ```
+
+2. In `config.xml`, make the start page load from the computer and allow it:
+
+   ```xml
+   <content src="http://127.0.0.1:8000/index.html" />
+   <allow-navigation href="http://127.0.0.1:*/*" />
+   ```
+
+3. Sync once and run:
+
+   ```shell
+   cordova prepare ios
+   kxbuild run .\platforms\ios\App.xcworkspace
+   ```
+
+   kxbuild builds, installs and launches the app, and starts the dev server and the USB connection in the same terminal. Pressing F5 in VS Code does the same.
+
+Day to day: edit the code under `www/`, run `cordova prepare ios`, then reopen the app (or run `kxbuild run .\platforms\ios\App.xcworkspace --no-build --no-install --kill-existing`, a few seconds) and the new page is there. Only native plugin code and `config.xml` changes need a rebuild. Native plugin code can be run with F5 in VS Code and debugged with breakpoints.
+
+Set `content src` back to `index.html` before you release; Release builds ignore the settings above.
 
 ### 6. Release
 
