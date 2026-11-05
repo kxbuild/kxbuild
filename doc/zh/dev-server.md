@@ -41,6 +41,29 @@ kxbuild 构建、安装并启动 App，同时启动 `kxdevice reverse` 和开发
 
 在 VS Code 里按 F5 时插件做同样的事：开发服务器在名为 Dev Server（React Native 为 Metro）的终端里运行。
 
+## 例子：Cordova
+
+Cordova 13 没有自带的开发服务器，用 Python 托管 `platforms/ios/www` 就够了（`cordova prepare ios` 会把 `www/` 同步到那里）。
+
+1. 在 `platforms/ios/App.xcworkspace` 的构建设置里加：
+
+   ```
+   KXBUILD_DEV_SERVER_PORTS = 8000
+   KXBUILD_DEV_SERVER_COMMAND = python -m http.server 8000 --bind 127.0.0.1 --directory platforms/ios/www
+   KXBUILD_DEV_SERVER_DIR = $(SRCROOT)/../..
+   ```
+
+   用命令行加的话，把这三条写成 `[{"op":"set","owner":"App","config":"Debug","key":"…","value":"…"}]` 存为 `ops.json`，执行 `kxbuild project settings apply .\platforms\ios\App.xcworkspace --ops ops.json`。
+
+2. `config.xml` 里把首页改成开发服务器的地址，并允许访问它：
+
+   ```xml
+   <content src="http://127.0.0.1:8000/index.html" />
+   <allow-navigation href="http://127.0.0.1:*/*" />
+   ```
+
+3. `cordova prepare ios`，然后 `kxbuild run .\platforms\ios\App.xcworkspace`。之后改 `www/` 下的代码，执行 `cordova prepare ios`，在 App 里重新加载即可，不用重新构建。发布前把 `content src` 改回 `index.html`。
+
 ## 常见问题
 
 | 问题 | 解决办法 |

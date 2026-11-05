@@ -41,6 +41,29 @@ kxbuild builds, installs and launches the app, and starts `kxdevice reverse` and
 
 Pressing F5 in VS Code does the same: the dev server runs in a terminal named Dev Server (Metro for React Native).
 
+## Example: Cordova
+
+Cordova 13 ships no dev server; serving `platforms/ios/www` with Python is enough (`cordova prepare ios` copies `www/` there).
+
+1. Add to the build settings of `platforms/ios/App.xcworkspace`:
+
+   ```
+   KXBUILD_DEV_SERVER_PORTS = 8000
+   KXBUILD_DEV_SERVER_COMMAND = python -m http.server 8000 --bind 127.0.0.1 --directory platforms/ios/www
+   KXBUILD_DEV_SERVER_DIR = $(SRCROOT)/../..
+   ```
+
+   From the command line, save the three as `[{"op":"set","owner":"App","config":"Debug","key":"…","value":"…"}]` in `ops.json` and run `kxbuild project settings apply .\platforms\ios\App.xcworkspace --ops ops.json`.
+
+2. In `config.xml`, make the start page the dev server's and allow it:
+
+   ```xml
+   <content src="http://127.0.0.1:8000/index.html" />
+   <allow-navigation href="http://127.0.0.1:*/*" />
+   ```
+
+3. `cordova prepare ios`, then `kxbuild run .\platforms\ios\App.xcworkspace`. From then on, edit the code under `www/`, run `cordova prepare ios` and reload in the app; no rebuild needed. Set `content src` back to `index.html` before you release.
+
 ## Troubleshooting
 
 | Problem | Fix |

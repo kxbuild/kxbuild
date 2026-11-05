@@ -48,7 +48,11 @@ cordova prepare ios
 kxbuild build .\platforms\ios\App.xcworkspace --install
 ```
 
-### 5. 发布
+### 5. 改 Web 代码不重新构建
+
+开发阶段可以让 App 通过 USB 从电脑上加载 `www/`，改完代码 `cordova prepare ios` 再在 App 里重新加载即可，做法见[开发服务器走 USB](dev-server.md)里的 Cordova 例子。
+
+### 6. 发布
 
 用 Release 配置构建，.ipa 生成在 `platforms/ios` 下。
 

@@ -48,7 +48,11 @@ Set up [signing](../../README.md#-signing), connect the iPhone over USB, then:
 kxbuild build .\platforms\ios\App.xcworkspace --install
 ```
 
-### 5. Release
+### 5. Change web code without rebuilding
+
+During development the app can load `www/` from the computer over USB: edit, run `cordova prepare ios` and reload in the app. See the Cordova example in [Dev server over USB](dev-server.md).
+
+### 6. Release
 
 Build with the Release configuration to get an .ipa under `platforms/ios`.
 
