@@ -71,7 +71,12 @@ The **KXBuild** extension brings the same builds into VS Code: press F5 to build
 
 ![Press F5: the app starts on the iPhone, a tap stops it at a breakpoint in VS Code](images/vscode/hero.gif)
 
-Install it from the VS Code Marketplace (search for **KXBuild**). Features, screenshots and the FAQ are in [doc/en/vscode.md](doc/en/vscode.md).
+Install it in either of these ways:
+
+- **VS Code**: paste `vscode:extension/kxbuild.kxbuild` into your browser's address bar to open the extension page in VS Code, or search for **KXBuild** in the Extensions view (`Ctrl+Shift+X`) and click *Install*.
+- **Cursor, Windsurf, VSCodium and other editors that use Open VSX**: install it from [open-vsx.org/extension/kxbuild/kxbuild](https://open-vsx.org/extension/kxbuild/kxbuild), or search for **KXBuild** in the editor's Extensions view.
+
+Features, screenshots and the FAQ are in [doc/en/vscode.md](doc/en/vscode.md).
 
 ## 🤖 AI Coding Agents
 

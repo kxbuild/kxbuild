@@ -71,7 +71,12 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 
 ![按 F5：应用在 iPhone 上启动，点一下就停在 VS Code 的断点上](images/vscode/hero.gif)
 
-在 VS Code 扩展市场搜索 **KXBuild** 即可安装。功能介绍、截图和常见问题见 [doc/zh/vscode.md](doc/zh/vscode.md)。
+安装方式任选其一：
+
+- **VS Code**：把 `vscode:extension/kxbuild.kxbuild` 粘贴到浏览器地址栏，会直接在 VS Code 中打开插件页；也可以在扩展视图（`Ctrl+Shift+X`）搜索 **KXBuild**，点击“安装”。
+- **Cursor、Windsurf、VSCodium 等使用 Open VSX 的编辑器**：从 [open-vsx.org/extension/kxbuild/kxbuild](https://open-vsx.org/extension/kxbuild/kxbuild) 安装，或在编辑器的扩展视图搜索 **KXBuild**。
+
+功能介绍、截图和常见问题见 [doc/zh/vscode.md](doc/zh/vscode.md)。
 
 ## 🤖 AI 编码代理
 
