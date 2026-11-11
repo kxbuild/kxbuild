@@ -342,6 +342,21 @@ keychain 文件夹里没有工程要求的类型或团队的证书。补上对�
 
 执行 `kxbuild doctor -v`（与工程有关时带上工程路径）。它能修复大多数环境问题，其输出也是反馈问题时最有用的信息。
 
+## 🗂️ 示例应用与模板
+
+下面的示例应用都可以在 Windows、Linux、macOS 上用 kxbuild 直接编译并安装到 iPhone；新建项目用的模板也在单独的仓库里，欢迎提建议：
+
+| 仓库 | 内容 |
+| --- | --- |
+| [SwiftUI Gallery](https://github.com/kxbuild/swift-gallery) | 15 个 SwiftUI 示例：控件、列表、动画、手势、Swift Charts、MapKit、SwiftData |
+| [UIKit Gallery（Objective-C）](https://github.com/kxbuild/objc-gallery) | 14 个 Objective-C 编写的 UIKit 示例，所有视图都在代码里创建 |
+| [Flutter Gallery](https://github.com/kxbuild/flutter-gallery) | Material 与 Cupertino 组件，外加四个完整示例应用 |
+| [React Native Gallery](https://github.com/kxbuild/react-native-gallery) | 16 个 React Native 内置组件与 API 示例 |
+| [Expo Gallery](https://github.com/kxbuild/expo-gallery) | 22 个 Expo SDK 模块：相机、传感器、定位、SQLite 等 |
+| [Godot Gallery](https://github.com/kxbuild/godot-gallery) | 10 个 Godot 4 示例，导出为 iOS 工程 |
+| [Unity Gallery](https://github.com/kxbuild/unity-gallery) | 10 个 Unity 6 示例，导出为 iOS 工程 |
+| [KXBuild 应用模板](https://github.com/kxbuild/kxbuild-app-templates) | `kxbuild project create` 和 `add-target` 使用的项目与 target 模板 |
+
 ## 📣 反馈
 
 <div align="center">
