@@ -59,7 +59,7 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 | <img src="https://cdn.simpleicons.org/kotlin/7F52FF" width="18" /> **Kotlin Multiplatform / Compose** | [doc/zh/kotlin-multiplatform.md](doc/zh/kotlin-multiplatform.md) |
 | <img src="https://cdn.simpleicons.org/unity/000000" width="18" /> **Unity**（导出的 Xcode 工程） | [doc/zh/unity.md](doc/zh/unity.md) |
 | <img src="https://cdn.simpleicons.org/godotengine/478CBF" width="18" /> **Godot**（导出的 Xcode 工程） | [doc/zh/godot.md](doc/zh/godot.md) |
-| <img src="https://cdn.simpleicons.org/cocos/55C2E1" width="18" /> **cocos2d-x** | [doc/zh/cocos2d-x.md](doc/zh/cocos2d-x.md) |
+| <img src="https://cdn.simpleicons.org/cocos/55C2E1" width="18" /> **Cocos Creator / cocos2d-x** | [doc/zh/cocos2d-x.md](doc/zh/cocos2d-x.md) |
 | 🔌 **开发服务器走 USB**（Metro、livereload，任何框架） | [doc/zh/dev-server.md](doc/zh/dev-server.md) |
 | <img src="https://cdn.simpleicons.org/apachecordova/35434F" width="18" /> **Cordova** | [doc/zh/cordova.md](doc/zh/cordova.md) |
 
@@ -147,7 +147,7 @@ kxbuild build D:\projects\MyApp\MyApp.xcodeproj -c Release --export app-store
 
 | 命令 | 作用 |
 |---|---|
-| `kxbuild doctor [工程]` | 升级 kxbuild 及其组件，然后检查并修复构建环境。带工程路径时还会准备该工程（Flutter、React Native、Expo、Kotlin Multiplatform、cocos2d-x 首次构建前必须执行） |
+| `kxbuild doctor [工程]` | 升级 kxbuild 及其组件，然后检查并修复构建环境。带工程路径时还会准备该工程（Flutter、React Native、Expo、Kotlin Multiplatform、Cocos Creator、cocos2d-x 首次构建前必须执行） |
 | `kxbuild build <工程>` | 编译、链接、签名并打包 .xcodeproj、.xcworkspace 或含 Package.swift 的目录，可选安装到设备 |
 | `kxbuild run <工程>` | 构建应用，装到已连接的 iPhone 上并启动，可选收集应用日志、截图和视图层级 |
 | `kxbuild test <工程>` | 构建 Scheme 的测试并在已连接的 iOS 17+ 设备上运行（XCTest 与 Swift Testing） |
