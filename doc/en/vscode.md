@@ -2,7 +2,7 @@
 
 **English** · [简体中文](../zh/vscode.md)
 
-> ⚠️ **KXBuild is currently in private beta.** [Sign up](https://www.kxbuild.net/invite?to=register) to join the waitlist — completing your beta access request in your account helps us review it sooner, and we'll email you when your access is ready. You can also ⭐ Star or Watch us on [GitHub](https://github.com/kxbuild/kxbuild) to hear about updates.
+> ⚠️ **KXBuild is currently in private beta.** [Sign up](https://www.kxbuild.net/invite?to=register) to join the waitlist — completing your beta access request in your account helps us review it sooner, and we'll email you when your access is ready. You can also ⭐ Star or Watch us on [GitHub](../../README.md) to hear about updates.
 
 Build, run and debug iOS apps on a real iPhone from VS Code — on Windows, Linux and macOS.
 Press F5 and your app is built, signed, installed on the iPhone connected over USB, and stopped at your breakpoint.
@@ -29,7 +29,7 @@ Press F5 and your app is built, signed, installed on the iPhone connected over U
 
 ![A compile error in Problems, pointing at its line](../../images/vscode/en/problems.png)
 
-**App Store .ipa in one command.** Run **KXBuild: Build for App Store (.ipa)** from the Command Palette or the project's context menu. It signs a Release build with your Apple Distribution certificate and App Store profile and writes the .ipa to the project's `build` folder, ready for App Store Connect and TestFlight.
+**App Store .ipa in one command.** Run **KXBuild: Build for App Store (.ipa)** from the Command Palette or the project's context menu. It signs a Release build with your Apple Distribution certificate and App Store profile and writes the .ipa to the project's `build` folder, ready for App Store Connect and TestFlight. **KXBuild: Upload to App Store Connect** then uploads it (or any signed .ipa you pick) with kxstore; the first time it asks for your App Store Connect API key (Users and Access → Integrations → Team Keys), after that uploads need no input. The command returns as soon as Apple has accepted the package; the build shows up on the TestFlight tab a few minutes later.
 
 **Run tests on the iPhone.** XCTest and Swift Testing tests appear in the Testing view. Run a test, a class or a whole target on an iOS 17 or later device, with failures shown at the source line.
 
@@ -72,15 +72,15 @@ Icon Composer `.icon` files open in their own editor too.
 
 ![Flutter hot reload on the iPhone](../../images/vscode/stack-flutter.gif)
 
-**cocos2d-x** — stop at a C++ breakpoint, then change the scene and run again:
+**Cocos Creator** — change a TypeScript script, run cocos build, and run again:
 
-![cocos2d-x C++ breakpoint and the changed label on the iPhone](../../images/vscode/stack-cocos2dx.gif)
+![A Cocos Creator script change on the iPhone](../../images/vscode/stack-cocoscreator.gif)
 
 **Cordova** — edit www/index.html, run cordova prepare ios, and run again:
 
 ![Cordova page change on the iPhone](../../images/vscode/stack-cordova.gif)
 
-**uni-app** — import an HBuilderX project, then run it on the iPhone:
+**uni-app** — export the Xcode project with the [HBuilderX plugin](https://www.kxbuild.net/stacks/uni-app.html#hbuilderx), then open it here to run and debug the native layer on the iPhone:
 
 ![A uni-app project exported and running on the iPhone](../../images/vscode/stack-uniapp.gif)
 
@@ -107,7 +107,17 @@ KXBuild gives an AI agent the whole loop on Windows, Linux and macOS: build the 
 - **Claude Code**: `claude mcp add kxbuild -- kxbuild mcp` and `claude mcp add kxdevice -- kxdevice mcp`.
 - **Codex, Windsurf and other MCP clients**: run *KXBuild: Copy MCP Server Configuration for AI Tools* and paste the JSON into the tool's MCP settings.
 
-Then ask the agent to "build and run the app on my iPhone and show me a screenshot".
+- **Publishing**: `kxstore skill --install user` gives the agent KXBuild's App Store Connect command line (`kxstore build upload`, `metadata`, `screenshot`, `review submit`, `testflight`, or one `kxstore release`); the agent uploads and publishes, you keep the decision to submit.
+
+Then ask the agent to "build and run the app on my iPhone and show me a screenshot", or "upload the Release build to App Store Connect".
+
+## Screen readers and keyboard
+
+KXBuild works with NVDA, JAWS, Windows Narrator, Orca and VoiceOver.
+
+- In the Info.plist, String Catalog and Build Settings editors, move between rows with the arrow keys, press **F2** or **Enter** to edit a value and **Delete** to remove a row. The screen reader reads the whole row: key, value and, for translations, their state.
+- The KXBuild status bar item and side bar read out the selected device, the build configuration and whether a build is running.
+- In a terminal, set `NO_COLOR=1` or `TERM=dumb` to get plain output without colors or progress redraws. Add `--json` to `kxbuild` and `kxdevice` commands for output a script can read.
 
 ## FAQ
 
@@ -127,7 +137,7 @@ Yes. Breakpoints, stepping, variables and the Debug Console work for Swift and O
 Yes. For React Native, F5 starts Metro, saves apply with Fast Refresh, and React Native DevTools debugs the JavaScript. For Godot, export the project for iOS in the Godot editor, open the exported folder in VS Code and press F5.
 
 **Can I publish to the App Store?**
-Yes. Put your Apple Distribution certificate (.p12) and the app's App Store provisioning profile in the `keychain` folder next to the project, run **KXBuild: Build for App Store (.ipa)**, then upload the .ipa to App Store Connect with Transporter or any other upload tool.
+Yes. Put your Apple Distribution certificate (.p12) and the app's App Store provisioning profile in the `keychain` folder next to the project, run **KXBuild: Build for App Store (.ipa)**, then **KXBuild: Upload to App Store Connect** (it uses kxstore with your App Store Connect API key). Transporter on a Mac works too.
 
 **Is the extension free?**
 Yes, the extension is free. Builds run on the KXBuild toolchain, which has its own license with a free trial. You can start the trial, activate a license and check its status from the KXBuild view in VS Code.

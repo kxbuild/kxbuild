@@ -2,7 +2,7 @@
 
 [English](../en/vscode.md) · **简体中文**
 
-> ⚠️ **KXBuild 目前处于内测阶段。** 在官网[注册](https://www.kxbuild.net/invite?to=register)即提交内测申请，在用户中心完善申请资料可以更快通过审核，审核通过后会邮件通知你安装。也欢迎在 [GitHub](https://github.com/kxbuild/kxbuild) 上 ⭐ Star 或 Watch，及时获取更新。
+> ⚠️ **KXBuild 目前处于内测阶段。** 在官网[注册](https://www.kxbuild.net/invite?to=register)即提交内测申请，在用户中心完善申请资料可以更快通过审核，审核通过后会邮件通知你安装。也欢迎在 [GitHub](../../README.md) 上 ⭐ Star 或 Watch，及时获取更新。
 
 在 VS Code 里构建 iOS 应用、装到 iPhone 真机运行、断点调试，Windows、Linux、macOS 都能用。
 按 F5，应用会自动构建、签名、安装到 USB 连接的 iPhone，并停在你设的断点上。
@@ -29,7 +29,7 @@
 
 ![“问题”面板里的编译错误，指向出错的行](../../images/vscode/zh/problems.png)
 
-**一条命令出 App Store .ipa。** 在命令面板或工程右键菜单运行 **KXBuild: 生成 App Store ipa**，用你的 Apple Distribution 证书和 App Store 描述文件签名 Release 构建，.ipa 生成在项目的 `build` 目录，可以直接上传 App Store Connect 和 TestFlight。
+**一条命令出 App Store .ipa。** 在命令面板或工程右键菜单运行 **KXBuild: 生成 App Store ipa**，用你的 Apple Distribution 证书和 App Store 描述文件签名 Release 构建，.ipa 生成在项目的 `build` 目录。接着运行 **KXBuild: 上传到 App Store Connect**，用 kxstore 把它（或你选的任意已签名 .ipa）传上去：第一次会让你选 App Store Connect API 密钥（用户和访问 → 集成 → 团队密钥），之后上传不再需要输入。Apple 接收完包命令就结束，几分钟后构建出现在 TestFlight 页。
 
 **在 iPhone 上跑测试。** XCTest 和 Swift Testing 用例会出现在“测试”视图里。可以在 iOS 17 及以上的设备上运行单个用例、一个类或整个测试 target，失败信息会标在对应的源码行上。
 
@@ -72,15 +72,15 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 
 ![iPhone 上的 Flutter 热重载](../../images/vscode/stack-flutter.gif)
 
-**cocos2d-x**：停在 C++ 断点上查看变量，修改场景后再运行：
+**Cocos Creator**：修改 TypeScript 脚本，运行 cocos build 后再运行：
 
-![cocos2d-x 的 C++ 断点和 iPhone 上改过的标签](../../images/vscode/stack-cocos2dx.gif)
+![iPhone 上改过脚本的 Cocos Creator 游戏](../../images/vscode/stack-cocoscreator.gif)
 
 **Cordova**：修改 www/index.html，运行 cordova prepare ios 后再运行：
 
 ![iPhone 上更新后的 Cordova 页面](../../images/vscode/stack-cordova.gif)
 
-**uni-app**：导入 HBuilderX 项目，在 iPhone 上运行：
+**uni-app**：用 [HBuilderX 插件](https://www.kxbuild.net/zh/stacks/uni-app.html#hbuilderx)导出 Xcode 工程，在这里打开后到 iPhone 上运行，并调试原生层：
 
 ![导出后在 iPhone 上运行的 uni-app 项目](../../images/vscode/stack-uniapp.gif)
 
@@ -107,7 +107,17 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 - **Claude Code**：`claude mcp add kxbuild -- kxbuild mcp` 和 `claude mcp add kxdevice -- kxdevice mcp`。
 - **Codex、Windsurf 和其他 MCP 客户端**：运行 *KXBuild: 复制给 AI 工具用的 MCP 服务器配置*，把 JSON 粘贴到工具的 MCP 设置里。
 
-然后对代理说“把应用构建并装到我的 iPhone 上运行，给我看截图”就行。
+- **上架**：`kxstore skill --install user` 把 KXBuild 的 App Store Connect 命令行交给代理（`kxstore build upload`、`metadata`、`screenshot`、`review submit`、`testflight`，或一条 `kxstore release`）；上传和上架由代理完成，是否提审由你决定。
+
+然后对代理说“把应用构建并装到我的 iPhone 上运行，给我看截图”就行，或者“把 Release 包上传到 App Store Connect”。
+
+## 读屏软件与键盘操作
+
+KXBuild 支持 NVDA、JAWS、Windows 讲述人、Orca 和 VoiceOver。
+
+- 在 Info.plist、String Catalog 和 Build Settings 编辑器里，用方向键在行之间移动，按 **F2** 或 **Enter** 编辑值，按 **Delete** 删除行。读屏软件会读出整行内容：键、值，翻译还会读出翻译状态。
+- KXBuild 的状态栏和侧栏会读出当前设备、构建配置以及是否正在构建。
+- 在终端里设置 `NO_COLOR=1` 或 `TERM=dumb`，输出就是不带颜色、不原地刷新进度的纯文本。给 `kxbuild` 和 `kxdevice` 命令加上 `--json`，可以得到便于脚本读取的输出。
 
 ## 常见问题
 
@@ -127,7 +137,7 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 支持。React Native 项目按 F5 会自动启动 Metro，保存即热更新，JavaScript 用 React Native DevTools 调试。Godot 项目先在 Godot 编辑器里导出 iOS 工程，再用 VS Code 打开导出的文件夹，按 F5 即可。
 
 **能发布到 App Store 吗？**
-能。把 Apple Distribution 证书（.p12）和这个应用的 App Store 描述文件放到工程旁边的 `keychain` 文件夹，运行 **KXBuild: 生成 App Store ipa**，再用 Transporter 或其他上传工具把 .ipa 传到 App Store Connect 即可。
+能。把 Apple Distribution 证书（.p12）和这个应用的 App Store 描述文件放到工程旁边的 `keychain` 文件夹，运行 **KXBuild: 生成 App Store ipa**，再运行 **KXBuild: 上传到 App Store Connect**（用 kxstore 和你的 App Store Connect API 密钥上传）即可；有 Mac 的也可以用 Transporter。
 
 **插件收费吗？**
 插件完全免费。构建由 KXBuild 工具链完成，工具链单独授权，可以先免费试用。开始试用、激活授权和查看授权状态，都能在 VS Code 的 KXBuild 视图里完成。
