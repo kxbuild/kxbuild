@@ -54,6 +54,7 @@ Icon Composer 的 `.icon` 文件也有专门的编辑器。
 | **Godot**（导出的 Xcode 工程） | 在 iPhone 上构建、运行、调试导出的工程 |
 | **Flutter** | Dart 断点，保存即热重载，也支持原生断点 |
 | **Expo**、**uni-app**、**Unity**、**CocoaPods**、**cocos2d-x**、**Cordova**、**Kotlin Multiplatform** | 在 iPhone 上构建、运行、调试 |
+| **Cocos Creator** 3.8 / Cocos 4 | 用 cocos-cli 构建 iOS 平台并体检后，在 iPhone 上构建、运行 |
 
 **Objective-C**：停在断点上，查看 `self` 的变量：
 

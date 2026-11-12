@@ -54,6 +54,7 @@ Icon Composer `.icon` files open in their own editor too.
 | **Godot** (exported Xcode project) | Build, run and debug the exported project on the iPhone |
 | **Flutter** | Dart breakpoints, hot reload on save, native breakpoints |
 | **Expo**, **uni-app**, **Unity**, **CocoaPods**, **cocos2d-x**, **Cordova**, **Kotlin Multiplatform** | Build, run and debug on the iPhone |
+| **Cocos Creator** 3.8 / Cocos 4 | Build and run on the iPhone after building the iOS platform with cocos-cli and running doctor |
 
 **Objective-C** — stop at a breakpoint and look at `self`:
 
