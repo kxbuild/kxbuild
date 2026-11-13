@@ -41,6 +41,8 @@ claude mcp add kxdevice -- kxdevice mcp
 
 只读的工具（设备、日志、截图、视图层级）带有只读标记，多数客户端不会弹确认就执行。工具失败时会返回原因和该做的那一件事；例如没有授权时会提示执行 `kxbuild license activate <激活码>` 或 `kxbuild license trial`。
 
+个人授权下一台电脑同一时间只跑一个构建。同时开两个代理时，后发起的构建会被拒绝并说明原因，让它等前一个结束后重试。
+
 ## 2. 命令行加 `--json`
 
 kxbuild 和 kxdevice 的每条命令都支持 `--json`：stdout 变成一行一个 JSON 事件，靠执行 shell 命令工作的代理读到的是结果，不用解析文本。
@@ -101,11 +103,3 @@ kxstore review submit --yes --json
 - `kxstore skill --install user` 生成 SKILL.md（使用规则、退出码、重试策略、命令索引），Claude Code 在所有项目里都会读到；`kxstore skill --format agents >> AGENTS.md` 给其他代理追加同样的内容。用 `kxbuild project create` 创建的项目，AGENTS.md 里已经写好了上传和 release 的用法。
 - 有三件事 Apple 没有提供 API，每个 App 在 App Store Connect 网页上做一次：新建 App 记录、填写隐私标签、接受协议。命令会返回 `capability_not_supported`（退出码 5）并说明去哪里做，代理把这一步交给你，做完后重跑。
 - `.p8` 密钥不要进代理的上下文：交给 `kxstore login` 一次，或者放在环境变量 `KXSTORE_API_KEY_ID`、`KXSTORE_API_ISSUER_ID`、`KXSTORE_API_KEY_PATH` 里。什么时候提审由你决定：`--no-submit` 停在提审之前，`review submit` 要带 `--yes`，发布方式为 MANUAL 时最后的 `kxstore version publish` 也由你执行。
-
-## 常见问题
-
-**代理能在哪些系统上用？** Windows、Linux 和 macOS 都可以。构建、签名、安装、截图、日志、UI 自动化和调试器都直接对 USB 连接的 iPhone 操作。
-
-**应用要满足什么条件？** 开发签名的构建（项目 `keychain/` 文件夹里放 `.p12` 证书和 `.mobileprovision` 描述文件），以及已经信任这台电脑的 iPhone；UI 工具还会用到 kxdevice 首次使用时安装的 WebDriverAgent。
-
-**两个代理能同时构建吗？** 个人授权下一台机器同一时间只跑一个构建；第二个调用会被明确拒绝并说明原因，代理等第一个结束后重试即可。

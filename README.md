@@ -76,7 +76,7 @@ Install it in either of these ways:
 - **VS Code**: paste `vscode:extension/kxbuild.kxbuild` into your browser's address bar to open the extension page in VS Code, or search for **KXBuild** in the Extensions view (`Ctrl+Shift+X`) and click *Install*.
 - **Cursor, Windsurf, VSCodium and other editors that use Open VSX**: install it from [open-vsx.org/extension/kxbuild/kxbuild](https://open-vsx.org/extension/kxbuild/kxbuild), or search for **KXBuild** in the editor's Extensions view.
 
-Features, screenshots and the FAQ are in [doc/en/vscode.md](doc/en/vscode.md).
+Features, screenshots, command-line usage and AI prompts are in [doc/en/vscode.md](doc/en/vscode.md).
 
 ## 🤖 AI Coding Agents
 
@@ -312,15 +312,7 @@ kxdevice install .\build\MyApp.ipa
 
 With several devices connected, `--install` uses the first one; pass `--udid` to `kxdevice` to choose.
 
-## ❓ FAQ
-
-**Do I have to change my Xcode project?**
-
-No. kxbuild reads the project files as they are, and the project still opens in Xcode as usual.
-
-**Can the builds be published to the App Store?**
-
-Yes. A Release build writes an .ipa with the layout App Store Connect expects. Upload `build/<App>.ipa` as is; TestFlight and App Review work as usual.
+## 🔍 Troubleshooting
 
 **`kxbuild: command not found` after installing**
 

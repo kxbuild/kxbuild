@@ -76,7 +76,7 @@ kxbuild 是面向 Xcode 工程的编译系统，作用相当于 Mac 上的 xcode
 - **VS Code**：把 `vscode:extension/kxbuild.kxbuild` 粘贴到浏览器地址栏，会直接在 VS Code 中打开插件页；也可以在扩展视图（`Ctrl+Shift+X`）搜索 **KXBuild**，点击“安装”。
 - **Cursor、Windsurf、VSCodium 等使用 Open VSX 的编辑器**：从 [open-vsx.org/extension/kxbuild/kxbuild](https://open-vsx.org/extension/kxbuild/kxbuild) 安装，或在编辑器的扩展视图搜索 **KXBuild**。
 
-功能介绍、截图和常见问题见 [doc/zh/vscode.md](doc/zh/vscode.md)。
+功能介绍、截图、命令行用法和 AI 提示词见 [doc/zh/vscode.md](doc/zh/vscode.md)。
 
 ## 🤖 AI 编码代理
 
@@ -312,15 +312,7 @@ kxdevice install .\build\MyApp.ipa
 
 连接了多台设备时，`--install` 使用第一台；用 `kxdevice` 的 `--udid` 参数指定设备。
 
-## ❓ 常见问题
-
-**需要修改 Xcode 工程吗？**
-
-不需要。kxbuild 原样读取工程文件，工程照样可以用 Xcode 打开。
-
-**构建产物能上架 App Store 吗？**
-
-可以。Release 构建生成的 .ipa 结构符合 App Store Connect 要求，直接上传 `build/<App>.ipa` 即可，TestFlight 和审核照常进行。
+## 🔍 排查问题
 
 **安装后提示 `kxbuild: command not found`**
 

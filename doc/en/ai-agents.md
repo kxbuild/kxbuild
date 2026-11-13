@@ -41,6 +41,8 @@ Then ask for what you want: *"Build and run the app on my iPhone, wait ten secon
 
 Tools that only read (devices, logs, screenshots, the view hierarchy) are marked read-only, so most clients run them without asking. A tool that fails returns the reason and the one thing to do about it; a missing license, for example, asks for `kxbuild license activate <code>` or `kxbuild license trial`.
 
+A personal license runs one build at a time per computer. With two agents working at once, the later build is refused with the reason; have that agent retry when the first build is done.
+
 ## 2. The command line with `--json`
 
 Every kxbuild and kxdevice command accepts `--json`: stdout becomes one JSON event per line, so an agent that runs shell commands reads results instead of parsing text.
@@ -101,11 +103,3 @@ Or the whole thing from a `kxstore.yaml` written by `kxstore init --bundle-id co
 - `kxstore skill --install user` writes a SKILL.md (rules, exit codes, retry policy, command index) that Claude Code picks up for every project; `kxstore skill --format agents >> AGENTS.md` appends the same for other agents. Projects created with `kxbuild project create` already describe the upload and release commands.
 - Three things have no API and are done once per app on the App Store Connect website: creating the App record, the privacy labels and accepting agreements. The command reports `capability_not_supported` (exit code 5) and says where to do it; the agent hands that step to you and reruns.
 - Keep the `.p8` key out of the agent's context: give it to `kxstore login` once, or set `KXSTORE_API_KEY_ID`, `KXSTORE_API_ISSUER_ID` and `KXSTORE_API_KEY_PATH` in the environment. Decide yourself when to submit: `--no-submit` stops before review, `review submit` needs `--yes`, and a MANUAL release type leaves the final `kxstore version publish` to you.
-
-## Common questions
-
-**Which systems can the agent run on?** Windows, Linux and macOS. Building, signing, installing, screenshots, logs, UI automation and the debugger all work directly against the iPhone connected over USB.
-
-**What does the app need?** A development-signed build (a `.p12` certificate and a `.mobileprovision` profile in the project's `keychain/` folder) and an iPhone that has trusted the computer; the UI tools additionally use the WebDriverAgent runner that kxdevice installs on first use.
-
-**Can two agents build at the same time?** One build at a time per machine on a personal license; the second call is refused with a clear reason and the agent retries when the first one is done.
