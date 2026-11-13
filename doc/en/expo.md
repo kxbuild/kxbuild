@@ -78,4 +78,3 @@ kxbuild build .\ios\expohello.xcworkspace -c Release
 |---|---|
 | The app shows a red screen on launch | The app can't reach the dev server. Start the app with `kxbuild run` and keep its terminal open, with the iPhone connected over USB. Once the dev server is ready, tap Reload JS in the app |
 | In WSL the build fails because scanning for Expo modules didn't complete, or JS loads slowly | Keep the project under your Linux home (`~/`), not on a Windows drive under `/mnt/` |
-| There's no `ios` folder | Run `kxbuild doctor <project dir>` with the project path. It generates the iOS project |

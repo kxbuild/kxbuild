@@ -107,7 +107,7 @@ kxbuild project spm2app . -n MyApp -b com.example.myapp
 kxbuild build .\MyApp\MyApp.xcodeproj -c Release
 ```
 
-## 常见问题
+## 排查问题
 
 | 现象 | 解决办法 |
 |---|---|

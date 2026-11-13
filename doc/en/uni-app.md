@@ -20,7 +20,7 @@ Save the bundle ID and the offline packaging AppKey in the project, so later exp
 uniapp2xcode config --project D:\work\myuniapp --bundle-id com.example.myapp --dcloud-appkey YOUR_APPKEY
 ```
 
-For Vue 2 projects, HBuilderX can't be installed in a folder whose path contains parentheses (such as `Program Files (x86)`), or page compilation fails.
+For Vue 2 projects, HBuilderX can't be installed in a folder whose path contains parentheses (such as `Program Files (x86)`), or page compilation fails. Move the HBuilderX folder to a path like `D:\HBuilderX`, or switch the project to Vue 3 in manifest.json.
 
 ### 2. Export an Xcode project
 
@@ -68,13 +68,9 @@ Build with the Release configuration to get an .ipa named after your app under `
 kxbuild build D:\work\myuniapp-ios\HBuilder-Hello\HBuilder-Hello.xcworkspace -s HBuilder -c Release
 ```
 
-## FAQ
+## Troubleshooting
 
 | Problem | Fix |
 |---|---|
 | Export says you're not signed in or the AppID doesn't exist, or the app shows an AppKey error as soon as it opens | The AppID, AppKey and bundle ID are one bound set. Sign in to your DCloud account in HBuilderX and get the AppID from the basic settings in manifest.json. Then at dev.dcloud.net.cn, apply for the offline packaging AppKey on this app's iOS platform with your bundle ID. The bundle ID you export with must match the one used for the AppKey and the App ID in your Apple Developer account |
-| Page compilation fails because the HBuilderX install folder contains "(" | A limit for Vue 2 projects. Move HBuilderX to a path like `D:\HBuilderX`, or switch the project to Vue 3 in manifest.json |
-| Version mismatch or blank white screen after launch | The offline SDK and HBuilderX versions differ. Download the SDK matching your HBuilderX and export again |
-| After changing pages and installing again, the iPhone still shows the old pages | When installed over an existing copy, the app keeps using the pages from before. Delete the app on the iPhone (or run `kxdevice apps uninstall <bundle ID>`) and install again. The app's local data is deleted with it |
-| Export says no SDK matches your HBuilderX version | Download the iOS offline SDK zip for that version and run `uniapp2xcode sdk import <zip>` |
 | Export reports skipped modules at the end | The current SDK doesn't include the module, or its libraries can't be linked. The other modules are packaged as usual. You can also edit the `uniapp_subspecs` list in `HBuilder-Hello\Podfile` and run `pod install` there |

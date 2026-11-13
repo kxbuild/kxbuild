@@ -72,11 +72,9 @@ App 跑起来之后，保持 Metro 的终端（或 VS Code 窗口）开着，按
 kxbuild build .\ios\rnhello.xcworkspace -c Release
 ```
 
-## 常见问题
+## 排查问题
 
 | 问题 | 解决办法 |
 |---|---|
 | App 启动后红屏 | App 连不上 Metro。用 `kxbuild run` 启动 App，并保持它的终端开着；iPhone 用 USB 连接电脑。Metro 就绪后在 App 里点 Reload JS |
 | WSL 中构建和加载 JS 很慢 | 把工程放在 Linux 主目录（`~/`）下，不要放在 `/mnt/` 下的 Windows 盘 |
-| Run Script 阶段失败 | 带工程路径执行 `kxbuild doctor <工程目录>`，它会安装 React Native 脚本需要的依赖 |
-| Windows 上报路径错误 | 把工程放在 `D:\work` 这样的短路径下。doctor 会开启 Windows 长路径支持（需一次管理员授权） |

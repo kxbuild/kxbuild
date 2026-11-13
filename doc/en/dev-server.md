@@ -69,5 +69,4 @@ Cordova 13 ships no dev server; serving `platforms/ios/www` with Python is enoug
 | Problem | Fix |
 |---|---|
 | The app says it can't reach the dev server | Check the `kxbuild run` terminal or the logs under `~/.kxbuild/devserver/`: the dev server must be running and the iPhone connected over USB. Once the server is ready, reload the app |
-| Switching between two Debug apps leaves one unable to connect | Rebuild both with the current kxbuild; the component in older builds doesn't hand over the ports promptly on an app switch |
 | The dev server is slow in WSL | Keep the project under your Linux home (`~/`), not on a Windows drive under `/mnt/` |

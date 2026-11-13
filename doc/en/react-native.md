@@ -78,5 +78,3 @@ kxbuild build .\ios\rnhello.xcworkspace -c Release
 |---|---|
 | The app shows a red screen on launch | The app can't reach Metro. Start the app with `kxbuild run` and keep its terminal open, with the iPhone connected over USB. Once Metro is ready, tap Reload JS in the app |
 | Builds and JS loading are slow in WSL | Keep the project under your Linux home (`~/`), not on a Windows drive under `/mnt/` |
-| A Run Script phase fails | Run `kxbuild doctor <project dir>` with the project path. It installs what the React Native scripts need |
-| Path errors on Windows | Keep the project in a short path such as `D:\work`. Doctor turns on Windows long path support (one admin approval) |

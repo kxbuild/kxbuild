@@ -87,10 +87,8 @@ pod update Alamofire
 
 | Problem | Fix |
 |---|---|
-| The build can't find headers or modules from Pods | You're building the .xcodeproj. Build the .xcworkspace instead. If you just changed the Podfile, run `pod install` first |
 | `The sandbox is not in sync with the Podfile.lock` | Podfile.lock changed when you pulled. Run `pod install` |
 | Dependencies are in a bad state and you want to start over | Delete the Pods folder and run `pod install` again. If that doesn't help, clear the cache with `pod cache clean --all` |
-| The `pod` command isn't found | Run `kxbuild doctor`, then open a new terminal |
 
 ## Appendix: pod commands and version syntax
 

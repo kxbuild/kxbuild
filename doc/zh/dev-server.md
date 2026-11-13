@@ -64,10 +64,9 @@ Cordova 13 没有自带的开发服务器，用 Python 托管 `platforms/ios/www
 
 3. `cordova prepare ios`，然后 `kxbuild run .\platforms\ios\App.xcworkspace`。之后改 `www/` 下的代码，执行 `cordova prepare ios`，在 App 里重新加载即可，不用重新构建。发布前把 `content src` 改回 `index.html`。
 
-## 常见问题
+## 排查问题
 
 | 问题 | 解决办法 |
 |---|---|
 | App 启动后提示连不上开发服务器 | 看 `kxbuild run` 的终端或 `~/.kxbuild/devserver/` 下的日志，确认开发服务器已启动、iPhone 用数据线连着电脑。服务器就绪后在 App 里重新加载 |
-| 两个 Debug 版 App 来回切换时其中一个连不上 | 两个 App 都要用当前版本的 kxbuild 重新构建，旧版本的组件切换 App 时不会立刻让出端口 |
 | WSL 里开发服务器很慢 | 把工程放在 Linux 主目录（`~/`）下，不要放在 `/mnt/` 下的 Windows 盘 |

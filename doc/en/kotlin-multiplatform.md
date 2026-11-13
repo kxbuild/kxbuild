@@ -37,9 +37,3 @@ Build with the Release configuration to get an .ipa in the `iosApp` folder.
 ```shell
 kxbuild build .\iosApp\iosApp.xcodeproj -c Release
 ```
-
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| A Run Script phase fails, for example because `JAVA_HOME` isn't set or Kotlin/Native isn't ready | Run `kxbuild doctor` with the iOS project path. It sets up what the Gradle build needs |

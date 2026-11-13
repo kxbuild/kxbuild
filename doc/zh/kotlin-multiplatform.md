@@ -37,9 +37,3 @@ kxbuild build .\iosApp\iosApp.xcodeproj --install
 ```shell
 kxbuild build .\iosApp\iosApp.xcodeproj -c Release
 ```
-
-## 常见问题
-
-| 问题 | 解决办法 |
-|---|---|
-| Run Script 阶段失败，例如没有设置 `JAVA_HOME` 或 Kotlin/Native 未就绪 | 带 iOS 工程路径执行 `kxbuild doctor`，它会配置好 Gradle 构建需要的环境 |

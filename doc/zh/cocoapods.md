@@ -83,14 +83,12 @@ pod update Alamofire
 
 `pod update` 不带库名时，会在 Podfile 允许的范围内升级所有库。刚发布的新版本找不到时，加 `--repo-update` 先刷新本地索引。
 
-## 常见问题
+## 排查问题
 
 | 问题 | 解决办法 |
 |---|---|
-| 构建时找不到 Pods 里的头文件或模块 | 你构建的是 .xcodeproj，请改为构建 .xcworkspace。刚改过 Podfile 的话先执行 `pod install` |
 | `The sandbox is not in sync with the Podfile.lock` | 拉取代码后 Podfile.lock 变了，执行 `pod install` |
 | 依赖状态混乱，想从头再来 | 删除 Pods 目录后重新 `pod install`；仍不行时用 `pod cache clean --all` 清除缓存 |
-| 找不到 `pod` 命令 | 执行 `kxbuild doctor`，然后新开一个终端 |
 
 ## 附录：pod 命令与版本写法
 

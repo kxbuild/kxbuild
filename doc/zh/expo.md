@@ -72,10 +72,9 @@ App 跑起来之后，保持开发服务器的终端（或 VS Code 窗口）开�
 kxbuild build .\ios\expohello.xcworkspace -c Release
 ```
 
-## 常见问题
+## 排查问题
 
 | 问题 | 解决办法 |
 |---|---|
 | App 启动后红屏 | App 连不上开发服务器。用 `kxbuild run` 启动 App，并保持它的终端开着；iPhone 用 USB 连接电脑。开发服务器就绪后在 App 里点 Reload JS |
 | WSL 中构建失败，提示扫描 Expo 模块未完成，或加载 JS 很慢 | 把工程放在 Linux 主目录（`~/`）下，不要放在 `/mnt/` 下的 Windows 盘 |
-| 没有 `ios` 目录 | 带工程路径执行 `kxbuild doctor <工程目录>`，它会生成 iOS 工程 |

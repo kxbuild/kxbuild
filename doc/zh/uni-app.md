@@ -20,7 +20,7 @@ uniapp2xcode sdk import D:\Downloads\iOSSDK.zip
 uniapp2xcode config --project D:\work\myuniapp --bundle-id com.example.myapp --dcloud-appkey YOUR_APPKEY
 ```
 
-Vue 2 工程要求 HBuilderX 的安装路径不能包含括号（例如 `Program Files (x86)`），否则页面编译失败。
+Vue 2 工程要求 HBuilderX 的安装路径不能包含括号（例如 `Program Files (x86)`），否则页面编译失败；把 HBuilderX 整个目录移到 `D:\HBuilderX` 这类路径，或在 manifest.json 中把工程切换为 Vue 3。
 
 ### 2. 导出 Xcode 工程
 
@@ -68,13 +68,9 @@ kxbuild build D:\work\myuniapp-ios\HBuilder-Hello\HBuilder-Hello.xcworkspace -s 
 kxbuild build D:\work\myuniapp-ios\HBuilder-Hello\HBuilder-Hello.xcworkspace -s HBuilder -c Release
 ```
 
-## 常见问题
+## 排查问题
 
 | 问题 | 解决办法 |
 |---|---|
 | 导出时提示未登录或 AppID 不存在，或 App 一打开就报 AppKey 错误 | AppID、AppKey 和 Bundle ID 是绑定的一组。在 HBuilderX 中登录 DCloud 账号，在 manifest.json 的「基础配置」中获取 AppID；再到 dev.dcloud.net.cn 为该应用的 iOS 平台用你的 Bundle ID 申请离线打包 AppKey。导出时的 Bundle ID 必须与申请 AppKey 时的以及 Apple 开发者账号中的 App ID 一致 |
-| 页面编译失败，提示「HBuilderX 安装目录不能包括 ( 等特殊字符」 | Vue 2 工程的限制。把 HBuilderX 整个目录移到 `D:\HBuilderX` 这类路径，或在 manifest.json 中把工程切换为 Vue 3 |
-| 版本不匹配，或启动后白屏 | 离线 SDK 与 HBuilderX 版本不一致。下载与 HBuilderX 对应的 SDK 后重新导出 |
-| 改了页面、重新安装后，手机上还是旧页面 | 覆盖安装时 App 继续使用上次的页面。先在手机上删除 App（或执行 `kxdevice apps uninstall <Bundle ID>`）再安装。App 的本地数据会一起清除 |
-| 导出时提示找不到与 HBuilderX 版本一致的 SDK | 下载对应版本的 iOS 离线 SDK zip，执行 `uniapp2xcode sdk import <zip>` |
 | 导出结束时提示跳过了某些模块 | 当前 SDK 不包含该模块，或其库无法链接，其他模块照常打包。也可以在 `HBuilder-Hello\Podfile` 的 `uniapp_subspecs` 列表中增删模块，然后在该目录执行 `pod install` |

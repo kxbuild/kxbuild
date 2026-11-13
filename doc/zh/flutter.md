@@ -63,10 +63,3 @@ kxbuild build .\ios\Runner.xcworkspace -c Release --install
 ```shell
 kxbuild build .\ios\Runner.xcworkspace -c Release
 ```
-
-## 常见问题
-
-| 问题 | 解决办法 |
-|---|---|
-| Run Script 阶段失败，例如没有设置 `FLUTTER_ROOT` | 带工程路径执行 `kxbuild doctor <工程目录>`，它会配置好 Flutter 脚本需要的环境 |
-| 构建时找不到插件的头文件或模块 | 在 `ios` 目录执行 `pod install`，然后构建 `Runner.xcworkspace` 而不是 `Runner.xcodeproj` |

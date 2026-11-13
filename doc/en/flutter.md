@@ -63,10 +63,3 @@ Build with the Release configuration to get `build\Runner.ipa` in the `ios` fold
 ```shell
 kxbuild build .\ios\Runner.xcworkspace -c Release
 ```
-
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| A Run Script phase fails, for example because `FLUTTER_ROOT` isn't set | Run `kxbuild doctor <project dir>` with the project path. It sets up what the Flutter scripts need |
-| The build can't find plugin headers or modules | Run `pod install` in the `ios` folder, then build `Runner.xcworkspace`, not `Runner.xcodeproj` |
