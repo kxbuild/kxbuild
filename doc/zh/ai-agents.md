@@ -35,7 +35,7 @@ claude mcp add kxdevice -- kxdevice mcp
 | 服务器 | 工具 |
 | --- | --- |
 | `kxbuild` | `project_info`、`build_project`、`run_app`（构建 → 安装 → 启动，可选收集日志和截图）、`test_project`、`create_project`、`list_templates`、`resolve_packages`、`doctor`、`license_status` |
-| `kxdevice` | `list_devices`、`list_apps`、`install_app`、`launch_app`、`kill_app`、`screenshot`、`view_hierarchy`、`logs`、`syslog`、`crash_logs`、`ui_tap` / `ui_swipe` / `ui_type` / `ui_find` / `ui_source`、`debug_launch` / `debug_breakpoint` / `debug_continue` / `debug_backtrace` / `debug_variables` / `debug_evaluate` / `debug_output` / `debug_stop`、`forward_port` |
+| `kxdevice` | `list_devices`、`list_apps`、`install_app`、`launch_app`、`kill_app`、`screenshot`、`view_hierarchy`、`logs`、`syslog`、`crash_logs`、`app_ui_find` / `app_ui_tap` / `app_ui_swipe` / `app_ui_text` / `app_ui_do` / `app_ui_wait`（操作 kxbuild 打的 Debug 包，手机上不用另装东西）、`ui_tap` / `ui_swipe` / `ui_type` / `ui_find` / `ui_source`（通过 WebDriverAgent 操作整台手机：系统权限弹窗、其他 App、主屏幕）、`screen_elements`（读出屏幕最前面的内容）、`debug_launch` / `debug_breakpoint` / `debug_continue` / `debug_backtrace` / `debug_variables` / `debug_evaluate` / `debug_output` / `debug_stop`、`forward_port` |
 
 然后直接提要求：*“把应用构建并装到我的 iPhone 上运行，等十秒后给我截图和日志”*、*“在 `ContentView.body` 下个断点，运行，停下来时告诉我变量的值”*、*“点一下登录按钮，看看屏幕上显示了什么”*。
 

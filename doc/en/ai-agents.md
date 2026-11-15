@@ -35,7 +35,7 @@ What the agent can then do:
 | Server | Tools |
 | --- | --- |
 | `kxbuild` | `project_info`, `build_project`, `run_app` (build → install → launch, optionally logs and a screenshot), `test_project`, `create_project`, `list_templates`, `resolve_packages`, `doctor`, `license_status` |
-| `kxdevice` | `list_devices`, `list_apps`, `install_app`, `launch_app`, `kill_app`, `screenshot`, `view_hierarchy`, `logs`, `syslog`, `crash_logs`, `ui_tap` / `ui_swipe` / `ui_type` / `ui_find` / `ui_source`, `debug_launch` / `debug_breakpoint` / `debug_continue` / `debug_backtrace` / `debug_variables` / `debug_evaluate` / `debug_output` / `debug_stop`, `forward_port` |
+| `kxdevice` | `list_devices`, `list_apps`, `install_app`, `launch_app`, `kill_app`, `screenshot`, `view_hierarchy`, `logs`, `syslog`, `crash_logs`, `app_ui_find` / `app_ui_tap` / `app_ui_swipe` / `app_ui_text` / `app_ui_do` / `app_ui_wait` (operate a Debug build made by kxbuild, nothing else installed on the iPhone), `ui_tap` / `ui_swipe` / `ui_type` / `ui_find` / `ui_source` (the whole device through WebDriverAgent: system permission prompts, other apps, the home screen), `screen_elements` (what is in front on the screen), `debug_launch` / `debug_breakpoint` / `debug_continue` / `debug_backtrace` / `debug_variables` / `debug_evaluate` / `debug_output` / `debug_stop`, `forward_port` |
 
 Then ask for what you want: *"Build and run the app on my iPhone, wait ten seconds and show me a screenshot and the logs"*, *"Set a breakpoint in `ContentView.body`, run, and tell me the values when it stops"*, *"Tap the Login button and check what the screen shows"*.
 
