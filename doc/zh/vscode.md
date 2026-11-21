@@ -2,8 +2,6 @@
 
 [English](../en/vscode.md) · **简体中文**
 
-> ⚠️ **KXBuild 目前处于内测阶段。** 在官网[注册](https://www.kxbuild.net/invite?to=register)即提交内测申请，在用户中心完善申请资料可以更快通过审核，审核通过后会邮件通知你安装。也欢迎在 [GitHub](../../README.md) 上 ⭐ Star 或 Watch，及时获取更新。
-
 在 VS Code 里构建 iOS 应用、装到 iPhone 真机运行、断点调试，Windows、Linux、macOS 都能用。
 按 F5，应用会自动构建、签名、安装到 USB 连接的 iPhone，并停在你设的断点上。
 

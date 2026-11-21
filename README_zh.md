@@ -84,8 +84,6 @@ Claude Code、GitHub Copilot、Cursor、Codex、Windsurf 都能构建应用、�
 
 ## 📥 安装
 
-> kxbuild 目前处于内测阶段。在官网[注册](https://www.kxbuild.net/invite?to=register)即提交内测申请，审核通过后会邮件通知你安装。点右上角 ⭐ **Star** 或 👀 **Watch** 关注本仓库，第一时间获取更新。
-
 按系统执行对应命令，根据提示操作即可。
 
 **Linux / macOS / WSL**
